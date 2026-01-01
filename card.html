@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Bill Reminder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            max-width: 900px;
+        }
+
+        .credit-card {
+            width: 400px;
+            aspect-ratio: 1.586 / 1;
+            background: linear-gradient(145deg, #2d2d44 0%, #1a1a2e 50%, #0d0d1a 100%);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            box-shadow:
+                    0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                    0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+
+        .credit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                    radial-gradient(ellipse at 20% 20%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+                    radial-gradient(ellipse at 80% 80%, rgba(59, 130, 246, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            position: relative;
+            z-index: 1;
+        }
+
+        .bank-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .bank-logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .bank-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .bank-logo-text {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            color: #fff;
+            letter-spacing: -0.5px;
+        }
+
+        .bank-details {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .bank-name {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .card-variant {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        .chip-contactless {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .emv-chip {
+            width: 40px;
+            height: 30px;
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 50%, #c9a227 100%);
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .emv-chip::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 4px;
+            right: 4px;
+            height: 1px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .emv-chip::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 4px;
+            bottom: 4px;
+            width: 1px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .chip-lines {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            right: 4px;
+            bottom: 4px;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 3px;
+        }
+
+        .contactless-icon {
+            width: 24px;
+            height: 24px;
+            opacity: 0.8;
+        }
+
+        .contactless-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+        .card-middle {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 22px;
+            font-weight: 500;
+            color: #ffffff;
+            letter-spacing: 3px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cardholder-name {
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .card-network {
+            display: flex;
+            align-items: center;
+            height: 32px;
+        }
+
+        .card-network img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .visa-logo {
+            font-size: 24px;
+            font-weight: 700;
+            font-style: italic;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+
+        .payment-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(0, 0, 0, 0.3);
+            margin: 0 -24px -24px -24px;
+            padding: 14px 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .date-info {
+            display: flex;
+            gap: 24px;
+        }
+
+        .date-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .date-label {
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        .date-value {
+            font-size: 14px;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .status-badge {
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .status-warning {
+            background: rgba(251, 191, 36, 0.15);
+            color: #fbbf24;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .status-success {
+            background: rgba(34, 197, 94, 0.15);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .status-urgent {
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        /* Different card color themes */
+        .credit-card.theme-blue {
+            background: linear-gradient(145deg, #1e3a5f 0%, #0d1f33 50%, #071018 100%);
+        }
+
+        .credit-card.theme-blue::before {
+            background:
+                    radial-gradient(ellipse at 20% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                    radial-gradient(ellipse at 80% 80%, rgba(14, 165, 233, 0.08) 0%, transparent 50%);
+        }
+
+        .credit-card.theme-green {
+            background: linear-gradient(145deg, #1a3d2e 0%, #0d1f17 50%, #050d09 100%);
+        }
+
+        .credit-card.theme-green::before {
+            background:
+                    radial-gradient(ellipse at 20% 20%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+                    radial-gradient(ellipse at 80% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 50%);
+        }
+
+        .credit-card.theme-red {
+            background: linear-gradient(145deg, #4a1d1d 0%, #2a0f0f 50%, #150707 100%);
+        }
+
+        .credit-card.theme-red::before {
+            background:
+                    radial-gradient(ellipse at 20% 20%, rgba(239, 68, 68, 0.1) 0%, transparent 50%),
+                    radial-gradient(ellipse at 80% 80%, rgba(220, 38, 38, 0.08) 0%, transparent 50%);
+        }
+
+        .credit-card.theme-yellow {
+            background: linear-gradient(145deg, #3d3a1a 0%, #1f1d0d 50%, #0d0c05 100%);
+        }
+
+        .credit-card.theme-yellow::before {
+            background:
+                    radial-gradient(ellipse at 20% 20%, rgba(234, 179, 8, 0.1) 0%, transparent 50%),
+                    radial-gradient(ellipse at 80% 80%, rgba(202, 138, 4, 0.08) 0%, transparent 50%);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            body {
+                padding: 1rem;
+            }
+
+            .credit-card {
+                width: 100%;
+                max-width: 360px;
+                padding: 20px;
+            }
+
+            .bank-logo,
+            .bank-logo-text {
+                width: 40px;
+                height: 40px;
+                font-size: 12px;
+            }
+
+            .bank-name {
+                font-size: 14px;
+            }
+
+            .card-variant {
+                font-size: 12px;
+            }
+
+            .emv-chip {
+                width: 36px;
+                height: 26px;
+            }
+
+            .contactless-icon {
+                width: 20px;
+                height: 20px;
+            }
+
+            .card-number {
+                font-size: 18px;
+                letter-spacing: 2px;
+            }
+
+            .cardholder-name {
+                font-size: 12px;
+            }
+
+            .card-network {
+                height: 28px;
+            }
+
+            .payment-info {
+                margin: 0 -20px -20px -20px;
+                padding: 12px 20px;
+                margin-top: 16px;
+            }
+
+            .date-info {
+                gap: 16px;
+            }
+
+            .date-label {
+                font-size: 9px;
+            }
+
+            .date-value {
+                font-size: 13px;
+            }
+
+            .status-badge {
+                font-size: 10px;
+                padding: 6px 10px;
+            }
+        }
+
+        /* Page title styling */
+        .page-title {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+<p class="page-title">Credit Card Bill Tracker</p>
+
+<div class="cards-container">
+    <!-- Card 1: Axis Bank - Flipkart (Warning Status) -->
+    <div class="credit-card theme-blue">
+        <div class="card-header">
+            <div class="bank-info">
+                <div class="bank-logo">
+                    <img src="AxisBankLogo.png" alt="Axis Bank">
+                </div>
+                <div class="bank-details">
+                    <span class="bank-name">Axis Bank</span>
+                    <span class="card-variant">Flipkart Platinum</span>
+                </div>
+            </div>
+            <div class="chip-contactless">
+                <div class="emv-chip">
+                    <div class="chip-lines"></div>
+                </div>
+                <div class="contactless-icon">
+                    <img src="NFCIcon.png" alt="Contactless">
+                </div>
+            </div>
+        </div>
+
+        <div class="card-middle">
+            <div class="card-number">•••• •••• •••• 1234</div>
+        </div>
+
+        <div class="card-bottom">
+            <div class="cardholder-name">John Anderson</div>
+            <div class="card-network">
+                <img src="mastercardlogo.png" alt="Mastercard">
+            </div>
+        </div>
+
+        <div class="payment-info">
+            <div class="date-info">
+                <div class="date-item">
+                    <span class="date-label">Bill Date</span>
+                    <span class="date-value">15th</span>
+                </div>
+                <div class="date-item">
+                    <span class="date-label">Due Date</span>
+                    <span class="date-value">25th</span>
+                </div>
+            </div>
+            <div class="status-badge status-warning">3 Days Left</div>
+        </div>
+    </div>
+
+    <!-- Card 2: YES Bank - Amazon (Success Status) -->
+    <div class="credit-card theme-green">
+        <div class="card-header">
+            <div class="bank-info">
+                <div class="bank-logo">
+                    <img src="YESBankLogo.png" alt="YES Bank">
+                </div>
+                <div class="bank-details">
+                    <span class="bank-name">YES Bank</span>
+                    <span class="card-variant">Amazon Pay Rewards</span>
+                </div>
+            </div>
+            <div class="chip-contactless">
+                <div class="emv-chip">
+                    <div class="chip-lines"></div>
+                </div>
+                <div class="contactless-icon">
+                    <img src="NFCIcon.png" alt="Contactless">
+                </div>
+            </div>
+        </div>
+
+        <div class="card-middle">
+            <div class="card-number">•••• •••• •••• 5678</div>
+        </div>
+
+        <div class="card-bottom">
+            <div class="cardholder-name">John Anderson</div>
+            <div class="card-network">
+                <img src="rupaylogo.png" alt="RuPay">
+            </div>
+        </div>
+
+        <div class="payment-info">
+            <div class="date-info">
+                <div class="date-item">
+                    <span class="date-label">Bill Date</span>
+                    <span class="date-value">10th</span>
+                </div>
+                <div class="date-item">
+                    <span class="date-label">Due Date</span>
+                    <span class="date-value">20th</span>
+                </div>
+            </div>
+            <div class="status-badge status-success">Paid ✓</div>
+        </div>
+    </div>
+
+    <!-- Card 3: Axis Bank - Swiggy (Urgent Status) -->
+    <div class="credit-card theme-red">
+        <div class="card-header">
+            <div class="bank-info">
+                <div class="bank-logo">
+                    <img src="AxisBankLogo.png" alt="Axis Bank">
+                </div>
+                <div class="bank-details">
+                    <span class="bank-name">Axis Bank</span>
+                    <span class="card-variant">Swiggy Signature</span>
+                </div>
+            </div>
+            <div class="chip-contactless">
+                <div class="emv-chip">
+                    <div class="chip-lines"></div>
+                </div>
+                <div class="contactless-icon">
+                    <img src="NFCIcon.png" alt="Contactless">
+                </div>
+            </div>
+        </div>
+
+        <div class="card-middle">
+            <div class="card-number">•••• •••• •••• 9012</div>
+        </div>
+
+        <div class="card-bottom">
+            <div class="cardholder-name">John Anderson</div>
+            <div class="card-network">
+                <img src="mastercardlogo.png" alt="Mastercard">
+            </div>
+        </div>
+
+        <div class="payment-info">
+            <div class="date-info">
+                <div class="date-item">
+                    <span class="date-label">Bill Date</span>
+                    <span class="date-value">5th</span>
+                </div>
+                <div class="date-item">
+                    <span class="date-label">Due Date</span>
+                    <span class="date-value">15th</span>
+                </div>
+            </div>
+            <div class="status-badge status-urgent">1 Day Left</div>
+        </div>
+    </div>
+
+    <!-- Card 4: YES Bank - SimplyCLICK (Default Theme) -->
+    <div class="credit-card theme-yellow">
+        <div class="card-header">
+            <div class="bank-info">
+                <div class="bank-logo">
+                    <img src="YESBankLogo.png" alt="YES Bank">
+                </div>
+                <div class="bank-details">
+                    <span class="bank-name">YES Bank</span>
+                    <span class="card-variant">Marquee Elite</span>
+                </div>
+            </div>
+            <div class="chip-contactless">
+                <div class="emv-chip">
+                    <div class="chip-lines"></div>
+                </div>
+                <div class="contactless-icon">
+                    <img src="NFCIcon.png" alt="Contactless">
+                </div>
+            </div>
+        </div>
+
+        <div class="card-middle">
+            <div class="card-number">•••• •••• •••• 3456</div>
+        </div>
+
+        <div class="card-bottom">
+            <div class="cardholder-name">John Anderson</div>
+            <div class="card-network">
+                <img src="rupaylogo.png" alt="RuPay">
+            </div>
+        </div>
+
+        <div class="payment-info">
+            <div class="date-info">
+                <div class="date-item">
+                    <span class="date-label">Bill Date</span>
+                    <span class="date-value">1st</span>
+                </div>
+                <div class="date-item">
+                    <span class="date-label">Due Date</span>
+                    <span class="date-value">18th</span>
+                </div>
+            </div>
+            <div class="status-badge status-warning">5 Days Left</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
