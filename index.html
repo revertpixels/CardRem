@@ -15,14 +15,13 @@
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         /* ========================================
            CSS VARIABLES & THEMING
         ======================================== */
         :root {
-            /* Light Theme */
             --bg-primary: #f8fafc;
             --bg-secondary: #ffffff;
             --bg-tertiary: #f1f5f9;
@@ -37,7 +36,7 @@
             --warning: #f59e0b;
             --danger: #ef4444;
             --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-            --card-shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            --card-shadow-hover: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
             --glass-bg: rgba(255, 255, 255, 0.8);
             --glass-border: rgba(255, 255, 255, 0.3);
         }
@@ -51,7 +50,7 @@
             --text-muted: #64748b;
             --border-color: #334155;
             --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
-            --card-shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
+            --card-shadow-hover: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             --glass-bg: rgba(30, 41, 59, 0.8);
             --glass-border: rgba(51, 65, 85, 0.5);
         }
@@ -100,9 +99,9 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 40% 40%, rgba(236, 72, 153, 0.05) 0%, transparent 40%);
+            background: radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+            radial-gradient(circle at 40% 40%, rgba(236, 72, 153, 0.04) 0%, transparent 40%);
             animation: bgFloat 20s ease-in-out infinite;
         }
 
@@ -123,7 +122,7 @@
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--glass-border);
-            padding: 1rem 1.5rem;
+            padding: 0.875rem 1.25rem;
         }
 
         .header-content {
@@ -137,7 +136,7 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.625rem;
         }
 
         .logo-icon {
@@ -153,7 +152,7 @@
         }
 
         .logo-text {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
             background: var(--accent-gradient);
             -webkit-background-clip: text;
@@ -164,12 +163,12 @@
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.625rem;
         }
 
         .icon-btn {
-            width: 44px;
-            height: 44px;
+            width: 42px;
+            height: 42px;
             border-radius: 12px;
             border: 1px solid var(--border-color);
             background: var(--bg-secondary);
@@ -178,7 +177,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.25rem;
+            font-size: 1.125rem;
             transition: all 0.2s ease;
         }
 
@@ -189,6 +188,20 @@
 
         .icon-btn:active {
             transform: translateY(0);
+        }
+
+        .icon-btn.add-btn {
+            background: var(--accent-gradient);
+            border: none;
+            color: white;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+            font-size: 1.75rem;
+            font-weight: 300;
+            line-height: 1;
+        }
+
+        .icon-btn.add-btn:hover {
+            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
         }
 
         /* ========================================
@@ -212,17 +225,19 @@
             border-radius: 12px;
             cursor: pointer;
             font-weight: 500;
-            font-size: 0.875rem;
+            font-size: 0.85rem;
             transition: all 0.2s ease;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
+            border: 1px solid var(--border-color);
         }
 
         .nav-tab.active {
             background: var(--accent-gradient);
             color: white;
+            border-color: transparent;
             box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
         }
 
@@ -236,7 +251,8 @@
         .main-content {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 1.5rem;
+            padding: 1.25rem;
+            padding-bottom: 100px;
         }
 
         .view {
@@ -272,7 +288,7 @@
         }
 
         .stat-card:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
             box-shadow: var(--card-shadow);
         }
 
@@ -300,8 +316,9 @@
         }
 
         .stat-label {
-            font-size: 0.875rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
+            font-weight: 500;
         }
 
         /* ========================================
@@ -316,7 +333,7 @@
 
         .section-title {
             font-size: 1.25rem;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--text-primary);
         }
 
@@ -324,35 +341,52 @@
            CREDIT CARDS GRID
         ======================================== */
         .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 1.5rem;
-        }
-
-        /* ========================================
-           CARD WRAPPER WITH ACTIONS
-        ======================================== */
-        .card-wrapper {
             display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        @media (max-width: 400px) {
+            .cards-grid {
+                flex-direction: column;
+                align-items: center;
+                gap: 1.25rem;
+            }
         }
 
         /* ========================================
-           CREDIT CARD COMPONENT
+           PREMIUM CREDIT CARD COMPONENT
         ======================================== */
         .credit-card {
-            position: relative;
+            width: 100%;
+            max-width: 400px;
             aspect-ratio: 1.586 / 1;
-            border-radius: 20px;
-            padding: 1.5rem;
-            color: white;
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
             overflow: hidden;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow:
+                    0 25px 50px -12px rgba(0, 0, 0, 0.4),
+                    0 0 0 1px rgba(255, 255, 255, 0.05);
         }
 
+        .credit-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow:
+                    0 35px 60px -15px rgba(0, 0, 0, 0.5),
+                    0 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+
+        .credit-card:active {
+            transform: translateY(-4px) scale(1.01);
+        }
+
+        /* Card Gradient Overlay */
         .credit-card::before {
             content: '';
             position: absolute;
@@ -360,394 +394,667 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: inherit;
-            z-index: -1;
+            pointer-events: none;
+            z-index: 1;
         }
 
+        /* Holographic Shine Effect */
         .credit-card::after {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
+            top: -100%;
+            left: -100%;
+            width: 300%;
+            height: 300%;
             background: linear-gradient(
                     45deg,
-                    transparent 40%,
-                    rgba(255, 255, 255, 0.1) 45%,
-                    rgba(255, 255, 255, 0.2) 50%,
-                    rgba(255, 255, 255, 0.1) 55%,
-                    transparent 60%
+                    transparent 30%,
+                    rgba(255, 255, 255, 0.02) 40%,
+                    rgba(255, 255, 255, 0.06) 50%,
+                    rgba(255, 255, 255, 0.02) 60%,
+                    transparent 70%
             );
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
-        }
-
-        .credit-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: var(--card-shadow-hover);
+            transform: translateX(-100%) rotate(45deg);
+            transition: transform 0.8s ease;
+            pointer-events: none;
+            z-index: 2;
         }
 
         .credit-card:hover::after {
-            transform: translateX(100%);
+            transform: translateX(100%) rotate(45deg);
         }
 
-        /* Card Background Patterns */
-        .card-pattern {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            opacity: 0.15;
-            pointer-events: none;
+        /* ========================================
+           CARD COLOR THEMES - Premium Dark Gradients
+        ======================================== */
+        /* Midnight Purple */
+        .credit-card.theme-midnight {
+            background: linear-gradient(145deg, #2d2d44 0%, #1a1a2e 50%, #0d0d1a 100%);
         }
-
-        .card-pattern.circles {
+        .credit-card.theme-midnight::before {
             background:
-                    radial-gradient(circle at 100% 0%, rgba(255,255,255,0.3) 0%, transparent 50%),
-                    radial-gradient(circle at 0% 100%, rgba(255,255,255,0.2) 0%, transparent 50%);
+                    radial-gradient(ellipse at 20% 20%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+                    radial-gradient(ellipse at 80% 80%, rgba(59, 130, 246, 0.06) 0%, transparent 50%);
         }
 
-        .card-pattern.waves {
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='rgba(255,255,255,0.1)' d='M0 50 Q25 30 50 50 T100 50 V100 H0Z'/%3E%3C/svg%3E");
-            background-size: 200px;
+        /* Ocean Blue */
+        .credit-card.theme-ocean {
+            background: linear-gradient(145deg, #1e3a5f 0%, #0d1f33 50%, #071018 100%);
         }
-
-        .card-pattern.grid {
+        .credit-card.theme-ocean::before {
             background:
-                    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px),
-                    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
-            background-size: 20px 20px;
+                    radial-gradient(ellipse at 20% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                    radial-gradient(ellipse at 80% 80%, rgba(14, 165, 233, 0.08) 0%, transparent 50%);
         }
 
-        /* Card Content */
+        /* Sunset Orange */
+        .credit-card.theme-sunset {
+            background: linear-gradient(145deg, #4a2c1a 0%, #2a180d 50%, #150c07 100%);
+        }
+        .credit-card.theme-sunset::before {
+            background:
+                    radial-gradient(ellipse at 20% 20%, rgba(251, 146, 60, 0.1) 0%, transparent 50%),
+                    radial-gradient(ellipse at 80% 80%, rgba(245, 158, 11, 0.08) 0%, transparent 50%);
+        }
+
+        /* Forest Green */
+        .credit-card.theme-forest {
+            background: linear-gradient(145deg, #1a3d2e 0%, #0d1f17 50%, #050d09 100%);
+        }
+        .credit-card.theme-forest::before {
+            background:
+                    radial-gradient(ellipse at 20% 20%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+                    radial-gradient(ellipse at 80% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 50%);
+        }
+
+        /* Royal Purple */
+        .credit-card.theme-purple {
+            background: linear-gradient(145deg, #3d2d5c 0%, #1f1733 50%, #0f0b1a 100%);
+        }
+        .credit-card.theme-purple::before {
+            background:
+                    radial-gradient(ellipse at 20% 20%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
+                    radial-gradient(ellipse at 80% 80%, rgba(168, 85, 247, 0.08) 0%, transparent 50%);
+        }
+
+        /* Rose Pink */
+        .credit-card.theme-rose {
+            background: linear-gradient(145deg, #4a2d3d 0%, #2a1722 50%, #150b11 100%);
+        }
+        .credit-card.theme-rose::before {
+            background:
+                    radial-gradient(ellipse at 20% 20%, rgba(244, 114, 182, 0.1) 0%, transparent 50%),
+                    radial-gradient(ellipse at 80% 80%, rgba(236, 72, 153, 0.08) 0%, transparent 50%);
+        }
+
+        /* Gold */
+        .credit-card.theme-gold {
+            background: linear-gradient(145deg, #3d3a1a 0%, #1f1d0d 50%, #0d0c05 100%);
+        }
+        .credit-card.theme-gold::before {
+            background:
+                    radial-gradient(ellipse at 20% 20%, rgba(234, 179, 8, 0.1) 0%, transparent 50%),
+                    radial-gradient(ellipse at 80% 80%, rgba(202, 138, 4, 0.08) 0%, transparent 50%);
+        }
+
+        /* Slate Gray */
+        .credit-card.theme-slate {
+            background: linear-gradient(145deg, #374151 0%, #1f2937 50%, #111827 100%);
+        }
+        .credit-card.theme-slate::before {
+            background:
+                    radial-gradient(ellipse at 20% 20%, rgba(148, 163, 184, 0.08) 0%, transparent 50%),
+                    radial-gradient(ellipse at 80% 80%, rgba(100, 116, 139, 0.06) 0%, transparent 50%);
+        }
+
+        /* Royal Navy */
+        .credit-card.theme-royal {
+            background: linear-gradient(145deg, #1e2a4a 0%, #0f1628 50%, #070b14 100%);
+        }
+        .credit-card.theme-royal::before {
+            background:
+                    radial-gradient(ellipse at 20% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+                    radial-gradient(ellipse at 80% 80%, rgba(79, 70, 229, 0.08) 0%, transparent 50%);
+        }
+
+        /* Cherry Red */
+        .credit-card.theme-cherry {
+            background: linear-gradient(145deg, #4a1d1d 0%, #2a0f0f 50%, #150707 100%);
+        }
+        .credit-card.theme-cherry::before {
+            background:
+                    radial-gradient(ellipse at 20% 20%, rgba(239, 68, 68, 0.1) 0%, transparent 50%),
+                    radial-gradient(ellipse at 80% 80%, rgba(220, 38, 38, 0.08) 0%, transparent 50%);
+        }
+
+        /* ========================================
+           CARD HEADER - Bank Info & Chip
+        ======================================== */
         .card-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 1.5rem;
             position: relative;
-            z-index: 1;
+            z-index: 3;
         }
 
-        .card-bank-info {
+        .bank-info {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 10px;
+            flex: 1;
+            min-width: 0;
         }
 
         .bank-logo {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            background: rgba(255,255,255,0.2);
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.75rem;
-            font-weight: 700;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
-        .card-bank {
-            font-size: 1rem;
+        .bank-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .bank-logo-text {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 11px;
+            color: #fff;
+            letter-spacing: -0.5px;
+            text-align: center;
+        }
+
+        .bank-details {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 0;
+            flex: 1;
+        }
+
+        .bank-name {
+            color: #ffffff;
+            font-size: 15px;
             font-weight: 600;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
 
-        .card-chip {
-            width: 45px;
-            height: 35px;
-            background: linear-gradient(135deg, #ffd700 0%, #ffb700 50%, #ffd700 100%);
-            border-radius: 6px;
+        .card-variant {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Chip and Contactless Section */
+        .chip-contactless {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .emv-chip {
+            width: 38px;
+            height: 28px;
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 50%, #c9a227 100%);
+            border-radius: 5px;
             position: relative;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        .card-chip::before {
+        .emv-chip::before {
             content: '';
             position: absolute;
             top: 50%;
+            left: 4px;
+            right: 4px;
+            height: 1px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .emv-chip::after {
+            content: '';
+            position: absolute;
             left: 50%;
-            transform: translate(-50%, -50%);
-            width: 70%;
-            height: 60%;
-            background:
-                    linear-gradient(90deg, transparent 30%, rgba(0,0,0,0.1) 30%, rgba(0,0,0,0.1) 35%, transparent 35%),
-                    linear-gradient(transparent 45%, rgba(0,0,0,0.1) 45%, rgba(0,0,0,0.1) 55%, transparent 55%);
+            top: 4px;
+            bottom: 4px;
+            width: 1px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .chip-lines {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            right: 4px;
+            bottom: 4px;
+            border: 1px solid rgba(0, 0, 0, 0.15);
             border-radius: 3px;
         }
 
-        .card-number {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.25rem;
-            letter-spacing: 3px;
-            margin-bottom: 1.25rem;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            position: relative;
-            z-index: 1;
+        .contactless-icon {
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.8;
         }
 
-        .card-footer {
+        .contactless-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+        /* Fallback contactless waves */
+        .contactless-waves {
+            width: 22px;
+            height: 22px;
+            position: relative;
+        }
+
+        .contactless-waves .wave {
+            position: absolute;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            border-left-color: transparent;
+            border-bottom-color: transparent;
+            transform: rotate(-45deg);
+        }
+
+        .contactless-waves .wave:nth-child(1) {
+            width: 6px;
+            height: 6px;
+            bottom: 0;
+            left: 8px;
+        }
+
+        .contactless-waves .wave:nth-child(2) {
+            width: 12px;
+            height: 12px;
+            bottom: 0;
+            left: 5px;
+        }
+
+        .contactless-waves .wave:nth-child(3) {
+            width: 18px;
+            height: 18px;
+            bottom: 0;
+            left: 2px;
+        }
+
+        /* ========================================
+           CARD MIDDLE - Card Number
+        ======================================== */
+        .card-middle {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 3;
+            padding: 10px 0;
+        }
+
+        .card-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 20px;
+            font-weight: 500;
+            color: #ffffff;
+            letter-spacing: 3px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ========================================
+           CARD BOTTOM - Name & Network
+        ======================================== */
+        .card-bottom {
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
             position: relative;
-            z-index: 1;
+            z-index: 3;
         }
 
-        .card-info {
+        .cardholder-section {
             flex: 1;
+            min-width: 0;
         }
 
-        .card-holder-name {
-            font-size: 0.875rem;
-            font-weight: 600;
+        .cardholder-label {
+            font-size: 9px;
+            color: rgba(255, 255, 255, 0.5);
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 0.5rem;
-            opacity: 0.95;
-        }
-
-        .card-name {
-            font-size: 0.7rem;
+            letter-spacing: 0.5px;
             font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .cardholder-name {
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.25rem;
-            opacity: 0.8;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
 
-        .card-dates {
-            display: flex;
-            gap: 1.5rem;
-            font-size: 0.7rem;
-            opacity: 0.9;
-        }
-
-        .card-date-item span {
-            opacity: 0.7;
-            font-size: 0.55rem;
-            text-transform: uppercase;
-            display: block;
-        }
-
-        /* ========================================
-           NETWORK LOGOS
-        ======================================== */
         .card-network {
             display: flex;
             align-items: center;
-            justify-content: center;
-            min-width: 60px;
-            height: 40px;
-        }
-
-        /* VISA Logo */
-        .network-visa {
-            position: relative;
-        }
-
-        .network-visa svg {
-            width: 60px;
-            height: 20px;
-        }
-
-        /* MasterCard Logo */
-        .network-mastercard {
-            position: relative;
-            width: 50px;
             height: 30px;
+            flex-shrink: 0;
+            margin-left: 10px;
         }
 
-        .network-mastercard::before,
-        .network-mastercard::after {
-            content: '';
-            position: absolute;
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            top: 50%;
-            transform: translateY(-50%);
+        .card-network img {
+            height: 100%;
+            width: auto;
+            max-width: 50px;
+            object-fit: contain;
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
         }
 
-        .network-mastercard::before {
-            background: #eb001b;
-            left: 0;
-        }
-
-        .network-mastercard::after {
-            background: #f79e1b;
-            right: 0;
-        }
-
-        .network-mastercard-overlap {
-            position: absolute;
-            width: 10px;
-            height: 26px;
-            background: #ff5f00;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1;
-        }
-
-        /* RuPay Logo */
-        .network-rupay {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .network-rupay svg {
-            width: 55px;
-            height: 22px;
-        }
-
-        /* American Express Logo */
-        .network-amex {
-            background: linear-gradient(135deg, #006fcf 0%, #0055a5 100%);
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.65rem;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            text-align: center;
-            line-height: 1.1;
-        }
-
-        /* Diners Club Logo */
-        .network-diners {
-            display: flex;
-            align-items: center;
-            gap: 2px;
-        }
-
-        .network-diners svg {
-            width: 40px;
-            height: 30px;
-        }
-
-        /* Due Date Badge */
-        .due-badge {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            padding: 0.5rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: white;
-            z-index: 10;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            animation: pulse 2s infinite;
-        }
-
-        .due-badge.urgent {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-        }
-
-        .due-badge.warning {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-        }
-
-        .due-badge.safe {
-            background: linear-gradient(135deg, #10b981, #059669);
-        }
-
-        .due-badge.paid {
-            background: linear-gradient(135deg, #10b981, #059669);
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        /* Card Actions */
-        .card-actions {
-            position: absolute;
-            top: 0.75rem;
-            right: 0.75rem;
-            display: flex;
-            gap: 0.5rem;
-            opacity: 0;
-            transition: opacity 0.2s ease;
-            z-index: 10;
-        }
-
-        .credit-card:hover .card-actions {
-            opacity: 1;
-        }
-
-        .card-action-btn {
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
-            border: none;
-            background: rgba(255,255,255,0.2);
-            color: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(10px);
-            transition: all 0.2s ease;
-        }
-
-        .card-action-btn:hover {
-            background: rgba(255,255,255,0.3);
-            transform: scale(1.1);
+        .network-logo-text {
+            font-size: 18px;
+            font-weight: 700;
+            font-style: italic;
+            color: #ffffff;
+            letter-spacing: 1px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
 
         /* ========================================
-           MARK AS PAID BUTTON
+           PAYMENT INFO BAR
         ======================================== */
-        .payment-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .mark-paid-btn {
-            flex: 1;
-            padding: 0.75rem 1rem;
-            border-radius: 12px;
-            border: 2px solid var(--border-color);
-            background: var(--bg-secondary);
-            color: var(--text-secondary);
-            cursor: pointer;
-            font-size: 0.875rem;
-            font-weight: 600;
+        .payment-info {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            transition: all 0.2s ease;
+            justify-content: space-between;
+            background: rgba(0, 0, 0, 0.3);
+            margin: 0 -24px -24px -24px;
+            padding: 14px 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: auto;
+            position: relative;
+            z-index: 3;
+            gap: 10px;
         }
 
-        .mark-paid-btn:hover {
-            border-color: var(--success);
-            color: var(--success);
-            background: rgba(16, 185, 129, 0.1);
+        .date-info {
+            display: flex;
+            gap: 24px;
+            flex-shrink: 0;
         }
 
-        .mark-paid-btn.paid {
-            background: linear-gradient(135deg, #10b981, #059669);
-            border-color: transparent;
-            color: white;
+        .date-item {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
         }
 
-        .mark-paid-btn.paid:hover {
-            opacity: 0.9;
+        .date-label {
+            font-size: 9px;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
         }
+
+        .date-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        /* Status Badge */
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .status-badge.status-urgent {
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            animation: urgentPulse 2s ease-in-out infinite;
+        }
+
+        .status-badge.status-warning {
+            background: rgba(251, 191, 36, 0.15);
+            color: #fbbf24;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .status-badge.status-safe {
+            background: rgba(34, 197, 94, 0.1);
+            color: #4ade80;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+
+        .status-badge.status-paid {
+            background: rgba(34, 197, 94, 0.15);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        @keyframes urgentPulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+            }
+            50% {
+                transform: scale(1.02);
+                box-shadow: 0 0 8px 2px rgba(239, 68, 68, 0.3);
+            }
+        }
+
+        /* ========================================
+           CREDIT CARD RESPONSIVE STYLES
+        ======================================== */
+        @media (max-width: 480px) {
+            .credit-card {
+                max-width: 360px;
+                padding: 20px;
+                border-radius: 14px;
+            }
+
+            .bank-logo {
+                width: 40px;
+                height: 40px;
+                min-width: 40px;
+                border-radius: 8px;
+            }
+
+            .bank-name {
+                font-size: 14px;
+            }
+
+            .card-variant {
+                font-size: 12px;
+            }
+
+            .emv-chip {
+                width: 36px;
+                height: 26px;
+            }
+
+            .contactless-icon {
+                width: 20px;
+                height: 20px;
+            }
+
+            .chip-contactless {
+                gap: 10px;
+            }
+
+            .card-number {
+                font-size: 18px;
+                letter-spacing: 2px;
+            }
+
+            .cardholder-label {
+                font-size: 8px;
+            }
+
+            .cardholder-name {
+                font-size: 12px;
+                letter-spacing: 1px;
+            }
+
+            .card-network {
+                height: 28px;
+            }
+
+            .card-network img {
+                max-width: 44px;
+            }
+
+            .network-logo-text {
+                font-size: 16px;
+            }
+
+            .payment-info {
+                margin: 0 -20px -20px -20px;
+                padding: 12px 20px;
+                gap: 10px;
+            }
+
+            .date-info {
+                gap: 16px;
+            }
+
+            .date-label {
+                font-size: 9px;
+            }
+
+            .date-value {
+                font-size: 13px;
+            }
+
+            .status-badge {
+                font-size: 10px;
+                padding: 6px 10px;
+                border-radius: 6px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .credit-card {
+                max-width: 320px;
+                padding: 16px;
+            }
+
+            .bank-info {
+                gap: 8px;
+            }
+
+            .bank-logo {
+                width: 36px;
+                height: 36px;
+                min-width: 36px;
+            }
+
+            .bank-name {
+                font-size: 13px;
+            }
+
+            .card-variant {
+                font-size: 11px;
+            }
+
+            .emv-chip {
+                width: 32px;
+                height: 22px;
+            }
+
+            .contactless-icon {
+                width: 18px;
+                height: 18px;
+            }
+
+            .card-number {
+                font-size: 16px;
+                letter-spacing: 1.5px;
+            }
+
+            .cardholder-name {
+                font-size: 11px;
+            }
+
+            .card-network {
+                height: 24px;
+            }
+
+            .payment-info {
+                margin: 0 -16px -16px -16px;
+                padding: 10px 16px;
+            }
+
+            .date-info {
+                gap: 12px;
+            }
+
+            .date-label {
+                font-size: 8px;
+            }
+
+            .date-value {
+                font-size: 11px;
+            }
+
+            .status-badge {
+                font-size: 9px;
+                padding: 5px 8px;
+            }
+        }
+
 
         /* ========================================
            ADD CARD BUTTON
         ======================================== */
         .add-card-btn {
+            width: 100%;
+            max-width: 400px;
             aspect-ratio: 1.586 / 1;
-            border-radius: 20px;
+            border-radius: 16px;
             border: 3px dashed var(--border-color);
             background: var(--bg-secondary);
             cursor: pointer;
@@ -763,7 +1070,8 @@
         .add-card-btn:hover {
             border-color: var(--accent-primary);
             color: var(--accent-primary);
-            transform: translateY(-4px);
+            transform: translateY(-5px);
+            box-shadow: var(--card-shadow);
         }
 
         .add-card-btn .icon {
@@ -781,6 +1089,47 @@
         .add-card-btn:hover .icon {
             background: var(--accent-gradient);
             color: white;
+            transform: scale(1.1);
+        }
+
+        .add-card-btn span {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        /* ========================================
+           FLOATING ADD BUTTON
+        ======================================== */
+        .fab-add {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+            border: none;
+            color: white;
+            font-size: 2.25rem;
+            font-weight: 300;
+            line-height: 1;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+            transition: all 0.3s ease;
+            z-index: 99;
+        }
+
+        .fab-add:hover {
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 12px 35px rgba(99, 102, 241, 0.5);
+        }
+
+        .fab-add:active {
+            transform: scale(0.95);
+        }
+
+        .fab-add.hidden {
+            display: none;
         }
 
         /* ========================================
@@ -792,13 +1141,13 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 1000;
-            padding: 1rem;
+            padding: 1.25rem;
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
@@ -813,12 +1162,12 @@
             background: var(--bg-secondary);
             border-radius: 24px;
             width: 100%;
-            max-width: 560px;
-            max-height: 90vh;
+            max-width: 520px;
+            max-height: 85vh;
             overflow-y: auto;
             transform: scale(0.9) translateY(20px);
             transition: transform 0.3s ease;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
         }
 
         .modal-overlay.active .modal {
@@ -835,17 +1184,18 @@
             top: 0;
             background: var(--bg-secondary);
             z-index: 10;
+            border-radius: 24px 24px 0 0;
         }
 
         .modal-title {
             font-size: 1.25rem;
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .modal-close {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
             border: none;
             background: var(--bg-tertiary);
             color: var(--text-secondary);
@@ -867,10 +1217,180 @@
         }
 
         .modal-footer {
-            padding: 1.5rem;
+            padding: 1.25rem 1.5rem;
             border-top: 1px solid var(--border-color);
             display: flex;
             gap: 1rem;
+        }
+
+        /* ========================================
+           CARD ACTIONS MODAL
+        ======================================== */
+        .card-actions-modal {
+            max-width: 380px;
+        }
+
+        .card-preview-mini {
+            background: var(--bg-tertiary);
+            border-radius: 16px;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .card-preview-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            color: white;
+        }
+
+        .card-preview-info h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .card-preview-info p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .card-action-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .card-action-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.25rem;
+            border-radius: 14px;
+            border: 2px solid var(--border-color);
+            background: var(--bg-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .card-action-item:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--accent-primary);
+            transform: translateX(5px);
+        }
+
+        .card-action-item .action-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .card-action-item .action-icon.paid {
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .card-action-item .action-icon.edit {
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .card-action-item .action-icon.delete {
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .card-action-item .action-text h5 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.125rem;
+        }
+
+        .card-action-item .action-text p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .card-action-item.is-paid .action-icon {
+            background: var(--success);
+            color: white;
+        }
+
+        .card-action-item.delete-action:hover {
+            border-color: var(--danger);
+            background: rgba(239, 68, 68, 0.05);
+        }
+
+        /* ========================================
+           CONFIRMATION MODAL
+        ======================================== */
+        .confirm-modal {
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .confirm-modal .modal-body {
+            padding: 2.5rem 2rem;
+        }
+
+        .confirm-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        .confirm-icon.success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+
+        .confirm-icon.danger {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+        }
+
+        .confirm-icon.warning {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+
+        .confirm-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .confirm-message {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .confirm-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .confirm-actions .btn {
+            min-width: 120px;
         }
 
         /* ========================================
@@ -882,8 +1402,8 @@
 
         .form-label {
             display: block;
-            font-size: 0.875rem;
-            font-weight: 500;
+            font-size: 0.85rem;
+            font-weight: 600;
             color: var(--text-secondary);
             margin-bottom: 0.5rem;
         }
@@ -895,7 +1415,7 @@
             border-radius: 12px;
             background: var(--bg-tertiary);
             color: var(--text-primary);
-            font-size: 1rem;
+            font-size: 0.95rem;
             transition: all 0.2s ease;
         }
 
@@ -922,7 +1442,7 @@
             border-radius: 12px;
             background: var(--bg-tertiary);
             color: var(--text-primary);
-            font-size: 1rem;
+            font-size: 0.95rem;
             cursor: pointer;
             transition: all 0.2s ease;
         }
@@ -932,14 +1452,47 @@
             border-color: var(--accent-primary);
         }
 
-        /* Bank Selector */
+        /* ========================================
+           BANK SELECTOR
+        ======================================== */
+        .bank-search-wrapper {
+            margin-bottom: 0.75rem;
+            position: relative;
+        }
+
+        .bank-search-input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .bank-search-input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+        }
+
+        .bank-search-wrapper::before {
+            content: '🔍';
+            position: absolute;
+            left: 0.875rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            pointer-events: none;
+        }
+
         .bank-selector {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            display: flex;
+            flex-direction: column;
             gap: 0.5rem;
-            max-height: 200px;
+            max-height: 220px;
             overflow-y: auto;
-            padding: 0.5rem;
+            padding: 0.75rem;
             background: var(--bg-tertiary);
             border-radius: 12px;
             border: 2px solid var(--border-color);
@@ -947,19 +1500,19 @@
 
         .bank-option {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 0.75rem 0.5rem;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
             border-radius: 10px;
             cursor: pointer;
             border: 2px solid transparent;
             transition: all 0.2s ease;
-            text-align: center;
+            background: var(--bg-secondary);
         }
 
         .bank-option:hover {
-            background: var(--bg-secondary);
+            background: var(--bg-tertiary);
+            border-color: var(--accent-primary);
         }
 
         .bank-option.selected {
@@ -967,26 +1520,35 @@
             background: rgba(99, 102, 241, 0.1);
         }
 
+        .bank-option.hidden {
+            display: none;
+        }
+
         .bank-option-logo {
-            width: 40px;
-            height: 40px;
+            width: 38px;
+            height: 38px;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 700;
-            margin-bottom: 0.25rem;
             color: white;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .bank-option-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
         }
 
         .bank-option-name {
-            font-size: 0.65rem;
-            color: var(--text-secondary);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            width: 100%;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-primary);
         }
 
         .other-bank-input {
@@ -998,35 +1560,131 @@
             display: block;
         }
 
-        /* Color Picker */
+        /* Color Picker - Premium Theme Preview */
         .color-picker-wrapper {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.75rem;
         }
 
         .color-option {
-            width: 40px;
-            height: 40px;
+            aspect-ratio: 1.586 / 1;
             border-radius: 10px;
             cursor: pointer;
             border: 3px solid transparent;
             transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .color-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
         }
 
         .color-option:hover {
-            transform: scale(1.1);
+            transform: scale(1.08);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
         }
 
         .color-option.selected {
-            border-color: var(--text-primary);
-            box-shadow: 0 0 0 2px var(--bg-secondary);
+            border-color: #ffffff;
+            box-shadow: 0 0 0 3px var(--accent-primary), 0 6px 16px rgba(0, 0, 0, 0.3);
+            transform: scale(1.05);
+        }
+
+        /* Color Theme Options */
+        .color-option.theme-midnight {
+            background: linear-gradient(145deg, #2d2d44 0%, #1a1a2e 50%, #0d0d1a 100%);
+        }
+        .color-option.theme-midnight::before {
+            background: radial-gradient(ellipse at 30% 30%, rgba(139, 92, 246, 0.15) 0%, transparent 60%);
+        }
+
+        .color-option.theme-ocean {
+            background: linear-gradient(145deg, #1e3a5f 0%, #0d1f33 50%, #071018 100%);
+        }
+        .color-option.theme-ocean::before {
+            background: radial-gradient(ellipse at 30% 30%, rgba(59, 130, 246, 0.15) 0%, transparent 60%);
+        }
+
+        .color-option.theme-sunset {
+            background: linear-gradient(145deg, #4a2c1a 0%, #2a180d 50%, #150c07 100%);
+        }
+        .color-option.theme-sunset::before {
+            background: radial-gradient(ellipse at 30% 30%, rgba(251, 146, 60, 0.15) 0%, transparent 60%);
+        }
+
+        .color-option.theme-forest {
+            background: linear-gradient(145deg, #1a3d2e 0%, #0d1f17 50%, #050d09 100%);
+        }
+        .color-option.theme-forest::before {
+            background: radial-gradient(ellipse at 30% 30%, rgba(34, 197, 94, 0.15) 0%, transparent 60%);
+        }
+
+        .color-option.theme-purple {
+            background: linear-gradient(145deg, #3d2d5c 0%, #1f1733 50%, #0f0b1a 100%);
+        }
+        .color-option.theme-purple::before {
+            background: radial-gradient(ellipse at 30% 30%, rgba(139, 92, 246, 0.2) 0%, transparent 60%);
+        }
+
+        .color-option.theme-rose {
+            background: linear-gradient(145deg, #4a2d3d 0%, #2a1722 50%, #150b11 100%);
+        }
+        .color-option.theme-rose::before {
+            background: radial-gradient(ellipse at 30% 30%, rgba(244, 114, 182, 0.15) 0%, transparent 60%);
+        }
+
+        .color-option.theme-gold {
+            background: linear-gradient(145deg, #3d3a1a 0%, #1f1d0d 50%, #0d0c05 100%);
+        }
+        .color-option.theme-gold::before {
+            background: radial-gradient(ellipse at 30% 30%, rgba(234, 179, 8, 0.15) 0%, transparent 60%);
+        }
+
+        .color-option.theme-slate {
+            background: linear-gradient(145deg, #374151 0%, #1f2937 50%, #111827 100%);
+        }
+        .color-option.theme-slate::before {
+            background: radial-gradient(ellipse at 30% 30%, rgba(148, 163, 184, 0.12) 0%, transparent 60%);
+        }
+
+        .color-option.theme-royal {
+            background: linear-gradient(145deg, #1e2a4a 0%, #0f1628 50%, #070b14 100%);
+        }
+        .color-option.theme-royal::before {
+            background: radial-gradient(ellipse at 30% 30%, rgba(99, 102, 241, 0.15) 0%, transparent 60%);
+        }
+
+        .color-option.theme-cherry {
+            background: linear-gradient(145deg, #4a1d1d 0%, #2a0f0f 50%, #150707 100%);
+        }
+        .color-option.theme-cherry::before {
+            background: radial-gradient(ellipse at 30% 30%, rgba(239, 68, 68, 0.15) 0%, transparent 60%);
+        }
+
+        @media (max-width: 480px) {
+            .color-picker-wrapper {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 0.5rem;
+            }
+
+            .color-option {
+                border-radius: 8px;
+            }
         }
 
         /* Notification Preferences */
         .notification-prefs {
             background: var(--bg-tertiary);
-            border-radius: 12px;
+            border-radius: 14px;
             padding: 1rem;
             border: 2px solid var(--border-color);
         }
@@ -1052,26 +1710,11 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            font-size: 0.875rem;
+            font-size: 0.85rem;
             color: var(--text-primary);
+            font-weight: 500;
         }
 
-        .custom-date-input {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 0.75rem;
-            padding-top: 0.75rem;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .custom-date-input .form-input {
-            width: 80px;
-            padding: 0.5rem 0.75rem;
-            text-align: center;
-        }
-
-        /* Reminder Options */
         .reminder-options {
             display: flex;
             flex-wrap: wrap;
@@ -1079,14 +1722,19 @@
         }
 
         .reminder-chip {
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 0.875rem;
             border-radius: 20px;
             border: 2px solid var(--border-color);
-            background: var(--bg-tertiary);
+            background: var(--bg-secondary);
             color: var(--text-secondary);
             cursor: pointer;
-            font-size: 0.875rem;
+            font-size: 0.85rem;
+            font-weight: 600;
             transition: all 0.2s ease;
+        }
+
+        .reminder-chip:hover {
+            border-color: var(--accent-primary);
         }
 
         .reminder-chip.selected {
@@ -1100,7 +1748,7 @@
         ======================================== */
         .toggle {
             position: relative;
-            width: 52px;
+            width: 50px;
             height: 28px;
             flex-shrink: 0;
         }
@@ -1134,7 +1782,7 @@
             background: white;
             border-radius: 50%;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
         }
 
         .toggle input:checked + .toggle-slider {
@@ -1143,7 +1791,7 @@
         }
 
         .toggle input:checked + .toggle-slider::before {
-            transform: translateX(24px);
+            transform: translateX(22px);
         }
 
         /* ========================================
@@ -1153,7 +1801,7 @@
             padding: 0.875rem 1.5rem;
             border-radius: 12px;
             border: none;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
             display: inline-flex;
@@ -1166,17 +1814,18 @@
         .btn-primary {
             background: var(--accent-gradient);
             color: white;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
         }
 
         .btn-secondary {
             background: var(--bg-tertiary);
             color: var(--text-primary);
+            border: 2px solid var(--border-color);
         }
 
         .btn-secondary:hover {
@@ -1184,8 +1833,25 @@
         }
 
         .btn-danger {
-            background: var(--danger);
+            background: linear-gradient(135deg, #ef4444, #dc2626);
             color: white;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+        }
+
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
         }
 
         .btn-block {
@@ -1247,7 +1913,7 @@
 
         .timeline-card {
             background: var(--bg-secondary);
-            border-radius: 16px;
+            border-radius: 14px;
             padding: 1.25rem;
             border: 1px solid var(--border-color);
             transition: all 0.2s ease;
@@ -1255,35 +1921,39 @@
 
         .timeline-card:hover {
             box-shadow: var(--card-shadow);
+            transform: translateX(5px);
         }
 
         .timeline-date {
-            font-size: 0.875rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
             margin-bottom: 0.5rem;
+            font-weight: 500;
         }
 
         .timeline-title {
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 1rem;
             color: var(--text-primary);
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.35rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
         .timeline-subtitle {
-            font-size: 0.875rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
         }
 
         .paid-badge {
             background: var(--success);
             color: white;
-            padding: 0.125rem 0.5rem;
+            padding: 0.2rem 0.6rem;
             border-radius: 10px;
-            font-size: 0.7rem;
-            font-weight: 600;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
         }
 
         /* ========================================
@@ -1306,23 +1976,25 @@
             width: 40px;
             height: 40px;
             border-radius: 10px;
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--border-color);
             background: var(--bg-secondary);
             color: var(--text-primary);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 1rem;
             transition: all 0.2s ease;
         }
 
         .calendar-nav-btn:hover {
             background: var(--bg-tertiary);
+            border-color: var(--accent-primary);
         }
 
         .calendar-month {
             font-size: 1.25rem;
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .calendar-grid {
@@ -1334,9 +2006,10 @@
         .calendar-day-header {
             text-align: center;
             font-size: 0.75rem;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--text-muted);
             padding: 0.5rem;
+            text-transform: uppercase;
         }
 
         .calendar-day {
@@ -1347,15 +2020,17 @@
             justify-content: center;
             border-radius: 12px;
             background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--border-color);
             cursor: pointer;
             transition: all 0.2s ease;
             position: relative;
-            font-size: 0.875rem;
+            font-size: 0.9rem;
+            font-weight: 600;
         }
 
         .calendar-day:hover {
             background: var(--bg-tertiary);
+            border-color: var(--accent-primary);
         }
 
         .calendar-day.today {
@@ -1364,16 +2039,12 @@
             border-color: transparent;
         }
 
-        .calendar-day.has-due {
-            position: relative;
-        }
-
         .calendar-day.has-due::after {
             content: '';
             position: absolute;
-            bottom: 4px;
-            width: 6px;
-            height: 6px;
+            bottom: 5px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             background: var(--danger);
         }
@@ -1391,15 +2062,15 @@
         ======================================== */
         .settings-section {
             background: var(--bg-secondary);
-            border-radius: 16px;
+            border-radius: 18px;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
             border: 1px solid var(--border-color);
         }
 
         .settings-section-title {
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: 1.05rem;
+            font-weight: 700;
             color: var(--text-primary);
             margin-bottom: 1rem;
             display: flex;
@@ -1421,14 +2092,221 @@
         }
 
         .settings-item-info h4 {
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 0.95rem;
             color: var(--text-primary);
             margin-bottom: 0.25rem;
         }
 
         .settings-item-info p {
-            font-size: 0.875rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
+        }
+
+        .data-safety-callout {
+            background: rgba(245, 158, 11, 0.1);
+            border: 2px solid rgba(245, 158, 11, 0.3);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .data-safety-callout h4 {
+            color: var(--warning);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .data-safety-callout p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        /* Notification Times Grid */
+        .notification-times-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+            width: 100%;
+        }
+
+        .time-checkbox {
+            cursor: pointer;
+        }
+
+        .time-checkbox input {
+            display: none;
+        }
+
+        .time-checkbox-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 0.75rem;
+            border-radius: 14px;
+            border: 2px solid var(--border-color);
+            background: var(--bg-tertiary);
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .time-checkbox input:checked + .time-checkbox-box {
+            border-color: var(--accent-primary);
+            background: rgba(99, 102, 241, 0.1);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .time-checkbox:hover .time-checkbox-box {
+            border-color: var(--accent-primary);
+        }
+
+        .time-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .time-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .time-desc {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 0.125rem;
+        }
+
+        .custom-time-input-wrapper {
+            width: 100%;
+            display: none;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .custom-time-input-wrapper.show {
+            display: flex;
+        }
+
+        .notification-frequency-selector {
+            display: flex;
+            gap: 0.5rem;
+            background: var(--bg-tertiary);
+            padding: 0.375rem;
+            border-radius: 10px;
+        }
+
+        .freq-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 8px;
+            background: transparent;
+            color: var(--text-secondary);
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .freq-btn:hover {
+            background: var(--bg-secondary);
+        }
+
+        .freq-btn.active {
+            background: var(--accent-gradient);
+            color: white;
+            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+        }
+
+        .notification-schedule-summary {
+            background: var(--bg-tertiary);
+            border-radius: 14px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .schedule-summary-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .schedule-times-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .schedule-time-tag {
+            background: var(--bg-secondary);
+            padding: 0.375rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            font-weight: 600;
+        }
+
+        .schedule-time-tag.active {
+            background: rgba(99, 102, 241, 0.1);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+
+        .notification-preview {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-top: 1rem;
+            border: 2px dashed var(--border-color);
+        }
+
+        .notification-preview-title {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .notification-preview-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .notification-preview-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: var(--accent-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .notification-preview-text h5 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .notification-preview-text p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
         }
 
         /* ========================================
@@ -1462,18 +2340,21 @@
         }
 
         .notification-banner h3 {
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 1rem;
             margin-bottom: 0.25rem;
         }
 
         .notification-banner p {
-            font-size: 0.875rem;
+            font-size: 0.85rem;
             opacity: 0.9;
         }
 
         .notification-banner .btn {
             background: white;
             color: var(--accent-primary);
+            padding: 0.625rem 1.25rem;
+            font-size: 0.9rem;
         }
 
         /* ========================================
@@ -1495,10 +2376,12 @@
             font-size: 1.25rem;
             color: var(--text-secondary);
             margin-bottom: 0.5rem;
+            font-weight: 700;
         }
 
         .empty-state p {
             margin-bottom: 1.5rem;
+            font-size: 0.95rem;
         }
 
         /* ========================================
@@ -1506,30 +2389,37 @@
         ======================================== */
         .toast-container {
             position: fixed;
-            bottom: 2rem;
-            right: 2rem;
+            bottom: 100px;
+            right: 1rem;
+            left: 1rem;
             z-index: 1100;
             display: flex;
             flex-direction: column;
+            align-items: center;
             gap: 0.75rem;
+            pointer-events: none;
         }
 
         .toast {
             background: var(--bg-secondary);
-            border-radius: 12px;
+            border-radius: 14px;
             padding: 1rem 1.25rem;
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
             border: 1px solid var(--border-color);
-            transform: translateX(120%);
-            transition: transform 0.3s ease;
-            min-width: 300px;
+            transform: translateY(100%);
+            opacity: 0;
+            transition: all 0.3s ease;
+            max-width: 380px;
+            width: 100%;
+            pointer-events: auto;
         }
 
         .toast.show {
-            transform: translateX(0);
+            transform: translateY(0);
+            opacity: 1;
         }
 
         .toast-icon {
@@ -1543,7 +2433,8 @@
 
         .toast-message {
             flex: 1;
-            font-size: 0.875rem;
+            font-size: 0.9rem;
+            font-weight: 500;
             color: var(--text-primary);
         }
 
@@ -1561,11 +2452,12 @@
 
             .nav-tabs {
                 padding: 0.75rem;
+                gap: 0.375rem;
             }
 
             .nav-tab {
                 padding: 0.625rem 0.75rem;
-                font-size: 0.75rem;
+                font-size: 0.8rem;
             }
 
             .nav-tab span {
@@ -1574,19 +2466,11 @@
 
             .main-content {
                 padding: 1rem;
+                padding-bottom: 100px;
             }
 
             .cards-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .credit-card {
-                padding: 1.25rem;
-            }
-
-            .card-number {
-                font-size: 1rem;
-                letter-spacing: 2px;
             }
 
             .form-row {
@@ -1594,9 +2478,7 @@
             }
 
             .modal {
-                max-height: 95vh;
-                border-radius: 20px 20px 0 0;
-                margin-top: auto;
+                max-height: 90vh;
             }
 
             .stats-grid {
@@ -1604,17 +2486,14 @@
             }
 
             .toast-container {
-                left: 1rem;
-                right: 1rem;
-                bottom: 1rem;
+                bottom: 90px;
             }
 
-            .toast {
-                min-width: unset;
-            }
-
-            .bank-selector {
-                grid-template-columns: repeat(3, 1fr);
+            .fab-add {
+                bottom: 20px;
+                right: 20px;
+                width: 56px;
+                height: 56px;
             }
         }
 
@@ -1632,12 +2511,24 @@
                 font-size: 1.5rem;
             }
 
-            .bank-selector {
-                grid-template-columns: repeat(3, 1fr);
+            .notification-times-grid {
+                gap: 0.5rem;
             }
 
-            .card-holder-name {
+            .time-checkbox-box {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .time-icon {
+                font-size: 1.25rem;
+            }
+
+            .time-label {
                 font-size: 0.75rem;
+            }
+
+            .time-desc {
+                display: none;
             }
         }
 
@@ -1667,7 +2558,7 @@
            PRINT STYLES
         ======================================== */
         @media print {
-            .header, .nav-tabs, .add-card-btn, .card-actions, .notification-banner, .payment-actions {
+            .header, .nav-tabs, .add-card-btn, .notification-banner, .fab-add {
                 display: none !important;
             }
 
@@ -1677,421 +2568,6 @@
                 border: 2px solid #000;
             }
         }
-
-        /* ========================================
-   NETWORK LOGO IMAGES
-======================================== */
-        .network-logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 40px;
-        }
-
-        .network-logo img {
-            max-width: 100%;
-            max-height: 100%;
-            width: auto;
-            height: auto;
-            object-fit: contain;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-            border-radius: 4px;
-        }
-
-        /* ========================================
-   NOTIFICATION TIME PICKER
-======================================== */
-        .notification-times-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.75rem;
-            width: 100%;
-        }
-
-        .time-checkbox {
-            cursor: pointer;
-        }
-
-        .time-checkbox input {
-            display: none;
-        }
-
-        .time-checkbox-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem 0.75rem;
-            border-radius: 12px;
-            border: 2px solid var(--border-color);
-            background: var(--bg-tertiary);
-            transition: all 0.2s ease;
-            text-align: center;
-        }
-
-        .time-checkbox input:checked + .time-checkbox-box {
-            border-color: var(--accent-primary);
-            background: rgba(99, 102, 241, 0.1);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-        }
-
-        .time-checkbox:hover .time-checkbox-box {
-            border-color: var(--accent-primary);
-        }
-
-        .time-icon {
-            font-size: 1.5rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .time-label {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .time-desc {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            margin-top: 0.125rem;
-        }
-
-        /* Custom Time Input */
-        .custom-time-input-wrapper {
-            width: 100%;
-            display: none;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .custom-time-input-wrapper.show {
-            display: flex;
-        }
-
-        .time-input {
-            max-width: 150px;
-            text-align: center;
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .custom-time-hint {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-        }
-
-        /* Notification Frequency Selector */
-        .notification-frequency-selector {
-            display: flex;
-            gap: 0.5rem;
-            background: var(--bg-tertiary);
-            padding: 0.25rem;
-            border-radius: 10px;
-        }
-
-        .freq-btn {
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 8px;
-            background: transparent;
-            color: var(--text-secondary);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .freq-btn:hover {
-            background: var(--bg-secondary);
-        }
-
-        .freq-btn.active {
-            background: var(--accent-gradient);
-            color: white;
-            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
-        }
-
-        /* Urgent Alert Indicator on Cards */
-        .urgent-pulse {
-            animation: urgentPulse 1.5s ease-in-out infinite;
-        }
-
-        @keyframes urgentPulse {
-            0%, 100% {
-                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
-            }
-            50% {
-                box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
-            }
-        }
-
-        /* Notification Preview Card */
-        .notification-preview {
-            background: var(--bg-tertiary);
-            border-radius: 12px;
-            padding: 1rem;
-            margin-top: 1rem;
-            border: 1px dashed var(--border-color);
-        }
-
-        .notification-preview-title {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.75rem;
-        }
-
-        .notification-preview-content {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-        }
-
-        .notification-preview-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            background: var(--accent-gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-            flex-shrink: 0;
-        }
-
-        .notification-preview-text h5 {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 0.25rem;
-        }
-
-        .notification-preview-text p {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-        }
-
-        .notification-schedule-summary {
-            background: var(--bg-tertiary);
-            border-radius: 12px;
-            padding: 1rem;
-            margin-top: 1rem;
-        }
-
-        .schedule-summary-title {
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .schedule-times-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .schedule-time-tag {
-            background: var(--bg-secondary);
-            padding: 0.375rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            border: 1px solid var(--border-color);
-        }
-
-        .schedule-time-tag.active {
-            background: rgba(99, 102, 241, 0.1);
-            border-color: var(--accent-primary);
-            color: var(--accent-primary);
-        }
-
-        .schedule-time-tag.custom {
-            background: rgba(245, 158, 11, 0.1);
-            border-color: var(--warning);
-            color: var(--warning);
-        }
-
-        /* Mobile Responsive for Time Grid */
-        @media (max-width: 480px) {
-            .notification-times-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 0.5rem;
-            }
-
-            .time-checkbox-box {
-                padding: 0.75rem 0.5rem;
-            }
-
-            .time-icon {
-                font-size: 1.25rem;
-            }
-
-            .time-label {
-                font-size: 0.8rem;
-            }
-
-            .time-desc {
-                display: none;
-            }
-        }
-
-        /* ========================================
-   SCHEDULED DATES SECTION
-======================================== */
-        .scheduled-dates-section {
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .scheduled-dates-label,
-        .schedule-times-label {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.5rem;
-        }
-
-        .scheduled-dates-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            max-height: 200px;
-            overflow-y: auto;
-        }
-
-        .scheduled-date-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: var(--bg-secondary);
-            padding: 0.625rem 0.875rem;
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-        }
-
-        .scheduled-date-info {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .scheduled-date-icon {
-            font-size: 1rem;
-        }
-
-        .scheduled-date-text {
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--text-primary);
-        }
-
-        .scheduled-date-card {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            background: var(--bg-tertiary);
-            padding: 0.25rem 0.5rem;
-            border-radius: 6px;
-        }
-
-        .scheduled-date-item.urgent {
-            border-color: var(--danger);
-            background: rgba(239, 68, 68, 0.05);
-        }
-
-        .scheduled-date-item.urgent .scheduled-date-text {
-            color: var(--danger);
-            font-weight: 600;
-        }
-
-        .scheduled-date-item.warning {
-            border-color: var(--warning);
-            background: rgba(245, 158, 11, 0.05);
-        }
-
-        .no-scheduled-dates {
-            text-align: center;
-            padding: 1rem;
-            color: var(--text-muted);
-            font-size: 0.875rem;
-        }
-
-        .no-scheduled-dates .icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            opacity: 0.5;
-        }
-
-        .schedule-times-section {
-            margin-bottom: 1rem;
-        }
-
-        /* ========================================
-           AM/PM TIME PICKER
-        ======================================== */
-        .time-picker-ampm {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--bg-tertiary);
-            padding: 0.5rem;
-            border-radius: 12px;
-            border: 2px solid var(--border-color);
-        }
-
-        .time-select {
-            width: auto;
-            min-width: 60px;
-            padding: 0.5rem 0.75rem;
-            font-size: 1rem;
-            font-weight: 600;
-            text-align: center;
-            border: none;
-            background: var(--bg-secondary);
-            border-radius: 8px;
-        }
-
-        .time-select:focus {
-            outline: none;
-            box-shadow: 0 0 0 2px var(--accent-primary);
-        }
-
-        .ampm-select {
-            min-width: 70px;
-            background: var(--accent-gradient);
-            color: white;
-        }
-
-        .time-separator {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--text-muted);
-        }
-
-        /* Mobile adjustments */
-        @media (max-width: 480px) {
-            .scheduled-date-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.375rem;
-            }
-
-            .scheduled-date-card {
-                margin-left: 1.5rem;
-            }
-
-            .time-picker-ampm {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-        }
-
     </style>
 </head>
 <body>
@@ -2106,8 +2582,7 @@
             <span class="logo-text">CardGuard</span>
         </div>
         <div class="header-actions">
-            <button class="icon-btn" id="exportBtn" title="Export Data">📤</button>
-            <button class="icon-btn" id="importBtn" title="Import Data">📥</button>
+            <button class="icon-btn add-btn" id="headerAddBtn" title="Add Card">+</button>
             <button class="icon-btn" id="themeToggle" title="Toggle Theme">🌙</button>
         </div>
     </div>
@@ -2205,32 +2680,9 @@
     </section>
 
     <!-- Settings View -->
-    <!-- Settings View -->
     <section class="view" id="settingsView">
         <div class="settings-section">
             <h3 class="settings-section-title">🔔 Notifications</h3>
-
-            <!-- TEST BUTTONS - Only ONE set -->
-            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap;">
-                <button class="btn btn-secondary" onclick="testNotificationSimple()">🧪 Test Simple</button>
-                <button class="btn btn-secondary" onclick="testActualReminder()">📋 Test Reminder</button>
-                <button class="btn btn-secondary" onclick="forceCheckNotifications()">🔄 Force Check Now</button>
-            </div>
-
-            <!-- SCHEDULER STATUS -->
-            <div id="schedulerStatus" style="background: var(--bg-tertiary); border-radius: 12px; padding: 1rem; margin-bottom: 1rem; border: 1px solid var(--border-color);">
-                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                    <span id="schedulerDot" style="width: 12px; height: 12px; border-radius: 50%; background: #ef4444;"></span>
-                    <strong id="schedulerStatusText">Scheduler: Checking...</strong>
-                </div>
-                <div style="font-size: 0.8rem; color: var(--text-secondary);">
-                    <div>🕐 Current Time: <span id="currentTimeDisplay">--:--:--</span></div>
-                    <div>📅 Next Check: <span id="nextCheckTime">--:--</span></div>
-                    <div>🔔 Today's Notifications: <span id="notifCountDisplay">0</span>/<span id="maxNotifDisplay">2</span></div>
-                    <div>⏰ Selected Times: <span id="selectedTimesDisplay">None</span></div>
-                    <div id="lastCheckResult" style="margin-top: 0.5rem; padding: 0.5rem; background: var(--bg-secondary); border-radius: 8px;">Last check: Not yet</div>
-                </div>
-            </div>
 
             <div class="settings-item">
                 <div class="settings-item-info">
@@ -2302,7 +2754,7 @@
                 <div class="settings-item-info" style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
                     <div>
                         <h4>Custom Notification Time</h4>
-                        <p>Type any specific time you want</p>
+                        <p>Add a specific time you prefer</p>
                     </div>
                     <label class="toggle">
                         <input type="checkbox" id="enableCustomTime">
@@ -2310,8 +2762,8 @@
                     </label>
                 </div>
                 <div class="custom-time-input-wrapper" id="customTimeWrapper">
-                    <input type="time" id="customNotificationTime" class="form-input" style="font-size: 1.2rem; padding: 0.5rem; border-radius: 10px; border: 2px solid var(--border-color); text-align: center; max-width: 200px;">
-                    <span class="custom-time-hint">This will be added to your notification schedule</span>
+                    <input type="time" id="customNotificationTime" class="form-input" style="font-size: 1.1rem; padding: 0.625rem; border-radius: 10px; text-align: center; max-width: 180px;">
+                    <span style="font-size: 0.75rem; color: var(--text-muted);">This will be added to your notification schedule</span>
                 </div>
             </div>
 
@@ -2353,19 +2805,8 @@
                 <div class="schedule-summary-title">
                     📅 Your Notification Schedule
                 </div>
-
-                <div class="scheduled-dates-section">
-                    <div class="scheduled-dates-label">Upcoming Notification Dates:</div>
-                    <div class="scheduled-dates-list" id="scheduledDatesList">
-                    </div>
+                <div class="schedule-times-list" id="scheduleTimesList">
                 </div>
-
-                <div class="schedule-times-section">
-                    <div class="schedule-times-label">Daily Notification Times:</div>
-                    <div class="schedule-times-list" id="scheduleTimesList">
-                    </div>
-                </div>
-
                 <div class="notification-preview" id="notificationPreview">
                     <div class="notification-preview-title">Preview</div>
                     <div class="notification-preview-content">
@@ -2395,6 +2836,13 @@
 
         <div class="settings-section">
             <h3 class="settings-section-title">💾 Data Management</h3>
+
+            <div class="data-safety-callout">
+                <h4>⚠️ Before deleting data</h4>
+                <p>Export your cards first to create a backup. You can import this backup anytime.</p>
+                <button class="btn btn-secondary" id="exportBeforeDeleteBtn" style="padding: 0.5rem 1rem; font-size: 0.85rem;">📤 Export Backup Now</button>
+            </div>
+
             <div class="settings-item">
                 <div class="settings-item-info">
                     <h4>Export Cards</h4>
@@ -2412,7 +2860,7 @@
             <div class="settings-item">
                 <div class="settings-item-info">
                     <h4>Clear All Data</h4>
-                    <p>Delete all cards and settings</p>
+                    <p>Delete all cards and settings permanently</p>
                 </div>
                 <button class="btn btn-danger" id="clearDataBtn">Clear</button>
             </div>
@@ -2430,6 +2878,9 @@
         </div>
     </section>
 </main>
+
+<!-- Floating Add Button -->
+<button class="fab-add hidden" id="fabAddBtn" title="Add Card">+</button>
 
 <!-- Add/Edit Card Modal -->
 <div class="modal-overlay" id="cardModal">
@@ -2449,11 +2900,14 @@
 
                 <div class="form-group">
                     <label class="form-label">Card Nickname</label>
-                    <input type="text" class="form-input" id="cardName" placeholder="e.g., Shopping Card, Travel Card">
+                    <input type="text" class="form-input" id="cardName" placeholder="e.g., Flipkart Platinum, Amazon Pay">
                 </div>
 
                 <div class="form-group">
                     <label class="form-label">Bank *</label>
+                    <div class="bank-search-wrapper">
+                        <input type="text" class="bank-search-input" id="bankSearch" placeholder="Search banks...">
+                    </div>
                     <div class="bank-selector" id="bankSelector">
                         <!-- Banks will be rendered here -->
                     </div>
@@ -2483,13 +2937,11 @@
                     <div class="form-group">
                         <label class="form-label">Billing Date *</label>
                         <select class="form-select" id="billingDate" required>
-                            <!-- Options will be populated by JavaScript -->
                         </select>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Due Date *</label>
                         <select class="form-select" id="dueDate" required>
-                            <!-- Options will be populated by JavaScript -->
                         </select>
                     </div>
                 </div>
@@ -2500,9 +2952,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Card Color *</label>
+                    <label class="form-label">Card Color Theme *</label>
                     <div class="color-picker-wrapper" id="colorPicker">
-                        <!-- Colors will be rendered here -->
                     </div>
                 </div>
 
@@ -2538,10 +2989,6 @@
                                 <div class="reminder-chip" data-days="7">7</div>
                             </div>
                         </div>
-                        <div class="custom-date-input">
-                            <span class="notification-pref-label">📅 Also notify on date:</span>
-                            <input type="number" class="form-input" id="customNotifyDate" min="1" max="31" placeholder="--">
-                        </div>
                     </div>
                 </div>
             </form>
@@ -2549,6 +2996,63 @@
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
             <button type="submit" form="cardForm" class="btn btn-primary">Save Card</button>
+        </div>
+    </div>
+</div>
+
+<!-- Card Actions Modal -->
+<div class="modal-overlay" id="cardActionsModal">
+    <div class="modal card-actions-modal">
+        <div class="modal-header">
+            <h2 class="modal-title">Card Actions</h2>
+            <button class="modal-close" id="closeCardActionsModal">✕</button>
+        </div>
+        <div class="modal-body">
+            <div class="card-preview-mini" id="cardPreviewMini">
+                <div class="card-preview-icon" id="cardPreviewIcon">💳</div>
+                <div class="card-preview-info">
+                    <h4 id="cardPreviewName">HDFC Bank</h4>
+                    <p id="cardPreviewDetails">•••• 1234 • Due: 15th</p>
+                </div>
+            </div>
+            <div class="card-action-list">
+                <div class="card-action-item" id="actionMarkPaid">
+                    <div class="action-icon paid">💰</div>
+                    <div class="action-text">
+                        <h5 id="paidActionText">Mark as Paid</h5>
+                        <p id="paidActionDesc">Confirm payment for this month</p>
+                    </div>
+                </div>
+                <div class="card-action-item" id="actionEdit">
+                    <div class="action-icon edit">✏️</div>
+                    <div class="action-text">
+                        <h5>Edit Card</h5>
+                        <p>Modify card details</p>
+                    </div>
+                </div>
+                <div class="card-action-item delete-action" id="actionDelete">
+                    <div class="action-icon delete">🗑️</div>
+                    <div class="action-text">
+                        <h5>Delete Card</h5>
+                        <p>Remove this card permanently</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Confirmation Modal -->
+<div class="modal-overlay" id="confirmModal">
+    <div class="modal confirm-modal">
+        <div class="modal-body">
+            <div class="confirm-icon success" id="confirmIcon">✅</div>
+            <h3 class="confirm-title" id="confirmTitle">Mark as Paid?</h3>
+            <p class="confirm-message" id="confirmMessage">Are you sure you want to mark this card as paid for this month?</p>
+            <div class="confirm-actions">
+                <button class="btn btn-secondary" id="confirmCancelBtn">Cancel</button>
+                <button class="btn btn-success" id="confirmOkBtn">Confirm</button>
+            </div>
         </div>
     </div>
 </div>
@@ -2567,55 +3071,51 @@
     const APP_CONFIG = {
         storageKey: 'cardguard_cards',
         settingsKey: 'cardguard_settings',
-        version: '2.2.0'
+        version: '3.0.0'
     };
 
-    // Popular Banks with colors
+    // Popular Banks with colors and logos
     const POPULAR_BANKS = [
-        { id: 'hdfc', name: 'HDFC Bank', color: '#', abbr: 'HDFC', logoUrl: 'HDFCBankLogo.png' },
-        { id: 'sbi', name: 'SBI', color: '#', abbr: 'SBI', logoUrl: 'SBIBankLogo.png' },
-        { id: 'icici', name: 'ICICI Bank', color: '#', abbr: 'ICICI', logoUrl: 'ICICIBankLogo.png' },
-        { id: 'axis', name: 'Axis Bank', color: '#', abbr: 'AXIS', logoUrl: 'AxisBankLogo.png' },
-        { id: 'kotak', name: 'Kotak', color: '#', abbr: 'KTK', logoUrl: 'KotakBankLogo.png' },
-        { id: 'rbl', name: 'RBL Bank', color: '#', abbr: 'RBL', logoUrl: 'RBLBankLogo.png' },
-        { id: 'indusind', name: 'IndusInd Bank', color: '#', abbr: 'IIB', logoUrl: 'IndusIndBankLogo.webp' },
-        { id: 'idfc', name: 'IDFC Bank', color: '#', abbr: 'IDFC', logoUrl: 'IDFCBankLogo.png' },
-        { id: 'amex', name: 'American Express', color: '#', abbr: 'AMEX', logoUrl: 'AmericanExpressBankLogo.png' },
-        { id: 'yes', name: 'YES Bank', color: '#', abbr: 'YES', logoUrl: 'YESBankLogo.png' },
-        { id: 'sc', name: 'Standard Chartered Bank', color: '#', abbr: 'SC', logoUrl: 'StandardCharteredBankLogo.png' },
-        { id: 'citi', name: 'Citibank', color: '#', abbr: 'CITI', logoUrl: 'CitiBankLogo.png' },
-        { id: 'hsbc', name: 'HSBC Bank', color: '#', abbr: 'HSBC', logoUrl: 'HSBCBankLogo.png' },
-        { id: 'federal', name: 'Federal Bank', color: '#', abbr: 'FED', logoUrl: 'FederalBankLogo.webp' },
-        { id: 'union', name: 'Union Bank of India', color: '#', abbr: 'UBI', logoUrl: 'UnionBankLogo.png' },
-        { id: 'canara', name: 'Canara Bank', color: '#', abbr: 'CAN', logoUrl: 'CanaraBankLogo.png' },
-        { id: 'pnb', name: 'PNB', color: '#', abbr: 'PNB', logoUrl: 'PNBBankLogo.png' },
-        { id: 'bob', name: 'Bank of Baroda', color: '#', abbr: 'BOB', logoUrl: 'BankOfBarodaBankLogo.png' },
-        { id: 'au', name: 'AU', color: '#', abbr: 'AU', logoUrl: 'AUSmallFinanceBankLogo.png' },
-        { id: 'slice', name: 'Slice', color: '#', abbr: 'SLCE', logoUrl: 'SliceBankLogo.png' },
-        { id: 'sbm', name: 'SBM Bank', color: '#', abbr: 'SBM', logoUrl: 'SBMBankLogo.png' },
-        { id: 'unity', name: 'Unity SFB', color: '', abbr: 'UNTY', logoUrl: 'UnitySmallFinanceBankLogo.png' },
-        { id: 'utkarsh', name: 'Utkarsh SFB', color: '', abbr: 'UTKS', logoUrl: 'UtkarshSmallFinanceBankLogo.png' },
-        { id: 'other', name: 'Other Bank', color: '#6366f1', abbr: '...', logoUrl: null }
+        { id: 'hdfc', name: 'HDFC Bank', color: '#ffffff', abbr: 'HDFC', logoUrl: 'HDFCBankLogo.png' },
+        { id: 'sbi', name: 'SBI', color: '#ffffff', abbr: 'SBI', logoUrl: 'SBIBankLogo.png' },
+        { id: 'icici', name: 'ICICI Bank', color: '#ffffff', abbr: 'ICICI', logoUrl: 'ICICIBankLogo.png' },
+        { id: 'axis', name: 'Axis Bank', color: '#ffffff', abbr: 'AXIS', logoUrl: 'AxisBankLogo.png' },
+        { id: 'kotak', name: 'Kotak Mahindra Bank', color: '#ffffff', abbr: 'KTK', logoUrl: 'KotakBankLogo.png' },
+        { id: 'rbl', name: 'RBL Bank', color: '#ffffff', abbr: 'RBL', logoUrl: 'RBLBankLogo.png' },
+        { id: 'indusind', name: 'IndusInd Bank', color: '#ffffff', abbr: 'IIB', logoUrl: 'IndusIndBankLogo.webp' },
+        { id: 'idfc', name: 'IDFC First Bank', color: '#ffffff', abbr: 'IDFC', logoUrl: 'IDFCBankLogo.png' },
+        { id: 'amex', name: 'American Express', color: '#ffffff', abbr: 'AMEX', logoUrl: 'AmericanExpressBankLogo.png' },
+        { id: 'yes', name: 'YES Bank', color: '#ffffff', abbr: 'YES', logoUrl: 'YESBankLogo.png' },
+        { id: 'sc', name: 'Standard Chartered Bank', color: '#ffffff', abbr: 'SC', logoUrl: 'StandardCharteredBankLogo.png' },
+        { id: 'citi', name: 'Citibank', color: '#ffffff', abbr: 'CITI', logoUrl: 'CitiBankLogo.png' },
+        { id: 'hsbc', name: 'HSBC Bank', color: '#ffffff', abbr: 'HSBC', logoUrl: 'HSBCBankLogo.png' },
+        { id: 'federal', name: 'Federal Bank', color: '#ffffff', abbr: 'FED', logoUrl: 'FederalBankLogo.webp' },
+        { id: 'union', name: 'Union Bank of India', color: '#ffffff', abbr: 'UBI', logoUrl: 'UnionBankLogo.png' },
+        { id: 'canara', name: 'Canara Bank', color: '#ffffff', abbr: 'CAN', logoUrl: 'CanaraBankLogo.png' },
+        { id: 'pnb', name: 'Punjab National Bank', color: '#ffffff', abbr: 'PNB', logoUrl: 'PNBBankLogo.png' },
+        { id: 'bob', name: 'Bank of Baroda', color: '#ffffff', abbr: 'BOB', logoUrl: 'BankOfBarodaBankLogo.png' },
+        { id: 'au', name: 'AU Small Finance Bank', color: '#ffffff', abbr: 'AU', logoUrl: 'AUSmallFinanceBankLogo.png' },
+        { id: 'slice', name: 'Slice', color: '#ffffff', abbr: 'SLCE', logoUrl: 'SliceBankLogo.png' },
+        { id: 'sbm', name: 'SBM Bank', color: '#ffffff', abbr: 'SBM', logoUrl: 'SBMBankLogo.png' },
+        { id: 'unity', name: 'Unity Small Finance Bank', color: '#ffffff', abbr: 'UNTY', logoUrl: 'UnitySmallFinanceBankLogo.png' },
+        { id: 'utkarsh', name: 'Utkarsh Small Finance Bank', color: '#ffffff', abbr: 'UTKS', logoUrl: 'UtkarshSmallFinanceBankLogo.png' },
+        { id: 'other', name: 'Other Bank', color: '#ffffff', abbr: '...', logoUrl: null }
     ];
 
-    // Card color gradients
+    // Premium Card Color Themes - CSS class based
     const CARD_COLORS = [
-        { id: 'midnight', gradient: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)' },
-        { id: 'ocean', gradient: 'linear-gradient(135deg, #0077b6 0%, #00b4d8 50%, #90e0ef 100%)' },
-        { id: 'sunset', gradient: 'linear-gradient(135deg, #ff6b6b 0%, #feca57 100%)' },
-        { id: 'forest', gradient: 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)' },
-        { id: 'purple', gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' },
-        { id: 'rose', gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)' },
-        { id: 'gold', gradient: 'linear-gradient(135deg, #f7971e 0%, #ffd200 100%)' },
-        { id: 'slate', gradient: 'linear-gradient(135deg, #485563 0%, #29323c 100%)' },
-        { id: 'royal', gradient: 'linear-gradient(135deg, #141e30 0%, #243b55 100%)' },
-        { id: 'cherry', gradient: 'linear-gradient(135deg, #eb3349 0%, #f45c43 100%)' }
+        { id: 'midnight', name: 'Midnight Purple' },
+        { id: 'ocean', name: 'Ocean Blue' },
+        { id: 'sunset', name: 'Sunset Orange' },
+        { id: 'forest', name: 'Forest Green' },
+        { id: 'purple', name: 'Royal Purple' },
+        { id: 'rose', name: 'Rose Pink' },
+        { id: 'gold', name: 'Gold' },
+        { id: 'slate', name: 'Slate Gray' },
+        { id: 'royal', name: 'Royal Navy' },
+        { id: 'cherry', name: 'Cherry Red' }
     ];
 
-    // Card patterns
-    const CARD_PATTERNS = ['circles', 'waves', 'grid'];
-
-    // Default notification times
     const DEFAULT_NOTIFICATION_TIMES = {
         morning: { hour: 9, minute: 0, label: '9:00 AM', icon: '🌅' },
         afternoon: { hour: 14, minute: 0, label: '2:00 PM', icon: '☀️' },
@@ -2648,18 +3148,14 @@
         selectedReminder: 3,
         calendarDate: new Date(),
         notificationsSentToday: 0,
-        lastNotificationDate: null
+        lastNotificationDate: null,
+        activeCardId: null
     };
 
-    // PWA install prompt
     let deferredPrompt = null;
-
-    // Scheduler interval IDs
     let schedulerIntervalId = null;
-    let statusUpdateIntervalId = null;
-
-    // Track which time slots have been used today
     let usedTimeSlots = {};
+    let confirmCallback = null;
 
     // ========================================
     // UTILITY FUNCTIONS
@@ -2692,15 +3188,6 @@
         return today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0');
     }
 
-    function formatCurrency(amount) {
-        if (!amount) return '₹0';
-        return new Intl.NumberFormat('en-IN', {
-            style: 'currency',
-            currency: 'INR',
-            maximumFractionDigits: 0
-        }).format(amount);
-    }
-
     function getOrdinal(n) {
         const s = ['th', 'st', 'nd', 'rd'];
         const v = n % 100;
@@ -2708,11 +3195,12 @@
     }
 
     function getDueStatus(daysUntil, isPaid) {
-        if (isPaid) return { class: 'paid', text: '✓ Paid' };
-        if (daysUntil <= 0) return { class: 'urgent', text: 'Due Today!' };
-        if (daysUntil <= 3) return { class: 'urgent', text: daysUntil + ' day' + (daysUntil > 1 ? 's' : '') + ' left' };
-        if (daysUntil <= 7) return { class: 'warning', text: daysUntil + ' days left' };
-        return { class: 'safe', text: daysUntil + ' days left' };
+        if (isPaid) return { class: 'status-paid', text: 'Paid ✓' };
+        if (daysUntil <= 0) return { class: 'status-urgent', text: 'Due Today!' };
+        if (daysUntil === 1) return { class: 'status-urgent', text: '1 Day Left' };
+        if (daysUntil <= 3) return { class: 'status-urgent', text: daysUntil + ' Days Left' };
+        if (daysUntil <= 7) return { class: 'status-warning', text: daysUntil + ' Days Left' };
+        return { class: 'status-safe', text: daysUntil + ' Days Left' };
     }
 
     function isCardPaidThisCycle(card) {
@@ -2750,34 +3238,17 @@
         return hours12 + ':' + String(minutes).padStart(2, '0') + ' ' + period;
     }
 
-    function getCustomTimeFromInput() {
-        const input = document.getElementById('customNotificationTime');
-        return input ? input.value : '';
-    }
-
-    function setCustomTimeToInput(time24) {
-        if (!time24) return;
-        const input = document.getElementById('customNotificationTime');
-        if (input) {
-            input.value = time24;
-        }
-    }
-
     function getTodayDateString() {
         return new Date().toDateString();
     }
 
-    // ========================================
-    // NETWORK LOGO IMAGES
-    // ========================================
-
     function getNetworkLogo(network) {
         const logos = {
-            visa: '<div class="network-logo"><img src="visalogo.png" alt="Visa" /></div>',
-            mastercard: '<div class="network-logo"><img src="mastercardlogo.png" alt="MasterCard" /></div>',
-            rupay: '<div class="network-logo"><img src="rupaylogo.png" alt="RuPay" /></div>',
-            amex: '<div class="network-logo"><img src="amexlogo.png" alt="American Express" /></div>',
-            diners: '<div class="network-logo"><img src="dinerslogo.png" alt="Diners Club" /></div>'
+            visa: '<img src="visalogo.png" alt="Visa" onerror="this.parentElement.innerHTML=\'<span class=network-logo-text>VISA</span>\'">',
+            mastercard: '<img src="mastercardlogo.png" alt="MasterCard" onerror="this.parentElement.innerHTML=\'<span class=network-logo-text>MC</span>\'">',
+            rupay: '<img src="rupaylogo.png" alt="RuPay" onerror="this.parentElement.innerHTML=\'<span class=network-logo-text>RuPay</span>\'">',
+            amex: '<img src="amexlogo.png" alt="Amex" onerror="this.parentElement.innerHTML=\'<span class=network-logo-text>AMEX</span>\'">',
+            diners: '<img src="dinerslogo.png" alt="Diners" onerror="this.parentElement.innerHTML=\'<span class=network-logo-text>DINERS</span>\'">'
         };
         return logos[network] || logos.visa;
     }
@@ -2823,7 +3294,6 @@
             console.error('Error loading settings:', e);
         }
 
-        // Load notification tracking
         const lastNotifDate = localStorage.getItem('cardguard_lastnotifdate');
         const notifCount = localStorage.getItem('cardguard_notifcount');
 
@@ -2834,7 +3304,6 @@
         }
         state.lastNotificationDate = lastNotifDate;
 
-        // Load used time slots for today
         const savedSlots = localStorage.getItem('cardguard_usedslots');
         const slotsDate = localStorage.getItem('cardguard_slotsdate');
 
@@ -2868,7 +3337,78 @@
     }
 
     // ========================================
-    // NOTIFICATION SYSTEM - CORE FUNCTIONS
+    // CONFIRMATION MODAL
+    // ========================================
+
+    function showConfirmModal(title, message, iconType, okBtnClass, callback) {
+        const modal = document.getElementById('confirmModal');
+        const iconEl = document.getElementById('confirmIcon');
+        const titleEl = document.getElementById('confirmTitle');
+        const messageEl = document.getElementById('confirmMessage');
+        const okBtn = document.getElementById('confirmOkBtn');
+
+        titleEl.textContent = title;
+        messageEl.textContent = message;
+
+        iconEl.className = 'confirm-icon ' + iconType;
+        if (iconType === 'success') {
+            iconEl.textContent = '✅';
+        } else if (iconType === 'danger') {
+            iconEl.textContent = '⚠️';
+        } else if (iconType === 'warning') {
+            iconEl.textContent = '⚠️';
+        }
+
+        okBtn.className = 'btn ' + okBtnClass;
+
+        confirmCallback = callback;
+        modal.classList.add('active');
+    }
+
+    function hideConfirmModal() {
+        document.getElementById('confirmModal').classList.remove('active');
+        confirmCallback = null;
+    }
+
+    // ========================================
+    // CARD ACTIONS MODAL
+    // ========================================
+
+    function openCardActionsModal(cardId) {
+        const card = state.cards.find(function(c) { return c.id === cardId; });
+        if (!card) return;
+
+        state.activeCardId = cardId;
+        const isPaid = isCardPaidThisCycle(card);
+
+        document.getElementById('cardPreviewIcon').className = 'card-preview-icon theme-' + (card.color || 'midnight');
+        document.getElementById('cardPreviewName').textContent = card.cardName || card.bankName;
+        document.getElementById('cardPreviewDetails').textContent = '•••• ' + card.last4Digits + ' • Due: ' + getOrdinal(card.dueDate);
+
+        const paidActionItem = document.getElementById('actionMarkPaid');
+        const paidActionText = document.getElementById('paidActionText');
+        const paidActionDesc = document.getElementById('paidActionDesc');
+
+        if (isPaid) {
+            paidActionItem.classList.add('is-paid');
+            paidActionText.textContent = 'Mark as Unpaid';
+            paidActionDesc.textContent = 'Remove paid status for this month';
+        } else {
+            paidActionItem.classList.remove('is-paid');
+            paidActionText.textContent = 'Mark as Paid';
+            paidActionDesc.textContent = 'Confirm payment for this month';
+        }
+
+        document.getElementById('cardActionsModal').classList.add('active');
+    }
+
+    function closeCardActionsModal() {
+        document.getElementById('cardActionsModal').classList.remove('active');
+        state.activeCardId = null;
+    }
+
+    // ========================================
+    // NOTIFICATION SYSTEM
     // ========================================
 
     async function requestNotificationPermission() {
@@ -2945,7 +3485,6 @@
             });
         }
 
-        // Sort by time
         times.sort(function(a, b) {
             return (a.hour * 60 + a.minute) - (b.hour * 60 + b.minute);
         });
@@ -2953,60 +3492,20 @@
         return times;
     }
 
-    function checkIfTimeToNotify() {
-        const now = new Date();
-        const currentHour = now.getHours();
-        const currentMinute = now.getMinutes();
-        const currentTotalMinutes = currentHour * 60 + currentMinute;
-
-        const selectedTimes = getSelectedNotificationTimes();
-
-        console.log('⏰ Time Check at ' + currentHour + ':' + String(currentMinute).padStart(2, '0'));
-
-        for (let i = 0; i < selectedTimes.length; i++) {
-            const time = selectedTimes[i];
-            const timeTotalMinutes = time.hour * 60 + time.minute;
-            const difference = Math.abs(currentTotalMinutes - timeTotalMinutes);
-
-            // 5-minute window to catch the notification
-            if (difference <= 5) {
-                const slotKey = time.id + '_' + time.hour + '_' + time.minute;
-
-                if (usedTimeSlots[slotKey]) {
-                    console.log('   ⏭️ Already sent for slot: ' + slotKey);
-                    continue;
-                }
-
-                console.log('   ✅ MATCH! Slot: ' + slotKey);
-                return { matched: true, timeSlot: time, slotKey: slotKey };
-            }
-        }
-
-        console.log('   ❌ No time match');
-        return { matched: false, timeSlot: null, slotKey: null };
-    }
-
     function getCardsNeedingReminder() {
         const reminderCards = [];
         const urgentCards = [];
 
-        console.log('📋 Checking ' + state.cards.length + ' cards...');
-
         for (let i = 0; i < state.cards.length; i++) {
             const card = state.cards[i];
-            const cardName = card.cardName || card.bankName;
 
             if (isCardPaidThisCycle(card)) {
-                console.log('   ✓ ' + cardName + ' - Paid');
                 continue;
             }
 
             const daysUntilDue = getDaysUntil(card.dueDate);
-            console.log('   → ' + cardName + ' - Due in ' + daysUntilDue + ' days');
 
-            // Urgent: due today or tomorrow
             if (daysUntilDue >= 0 && daysUntilDue <= 1) {
-                console.log('     🚨 URGENT!');
                 urgentCards.push({ card: card, daysUntil: daysUntilDue });
                 continue;
             }
@@ -3033,8 +3532,6 @@
                 reminderCards.push({ card: card, daysUntil: daysUntilDue });
             }
         }
-
-        console.log('📊 Urgent=' + urgentCards.length + ', Reminders=' + reminderCards.length);
 
         return { urgentCards: urgentCards, reminderCards: reminderCards };
     }
@@ -3083,16 +3580,13 @@
                 audioContext.close();
             };
 
-            console.log('🔊 Sound played');
-
         } catch (e) {
-            console.log('🔇 Sound error:', e.message);
+            console.log('Sound error:', e.message);
         }
     }
 
     function sendNotification(title, body, tag, isUrgent) {
         if (Notification.permission !== 'granted') {
-            console.log('❌ Permission not granted');
             return false;
         }
 
@@ -3112,8 +3606,6 @@
                 notification.close();
             }, 15000);
 
-            console.log('✅ Notification sent: ' + title);
-
             playNotificationSound(isUrgent);
 
             state.notificationsSentToday++;
@@ -3122,7 +3614,7 @@
             return true;
 
         } catch (error) {
-            console.error('❌ Notification error:', error);
+            console.error('Notification error:', error);
             return false;
         }
     }
@@ -3163,64 +3655,23 @@
         return sendNotification(title, body, tag, isUrgent);
     }
 
-    // ========================================
-    // NOTIFICATION SCHEDULER
-    // ========================================
-
     function startNotificationScheduler() {
-        stopNotificationScheduler();
-
-        console.log('🚀 Starting scheduler...');
+        if (schedulerIntervalId) {
+            clearInterval(schedulerIntervalId);
+        }
 
         schedulerIntervalId = setInterval(function() {
             runScheduledCheck();
         }, 30 * 1000);
 
-        statusUpdateIntervalId = setInterval(function() {
-            updateSchedulerStatusDisplay();
-        }, 1000);
-
         runScheduledCheck();
-        updateSchedulerStatusDisplay();
-
-        console.log('✅ Scheduler started');
-    }
-
-    function stopNotificationScheduler() {
-        if (schedulerIntervalId) {
-            clearInterval(schedulerIntervalId);
-            schedulerIntervalId = null;
-        }
-        if (statusUpdateIntervalId) {
-            clearInterval(statusUpdateIntervalId);
-            statusUpdateIntervalId = null;
-        }
     }
 
     function runScheduledCheck() {
-        const now = new Date();
-        const timeString = now.toLocaleTimeString();
-        const lastCheckResult = document.getElementById('lastCheckResult');
+        if (!state.settings.pushNotifications) return;
+        if (Notification.permission !== 'granted') return;
+        if (state.cards.length === 0) return;
 
-        console.log('');
-        console.log('🔔 CHECK at ' + timeString);
-
-        if (!state.settings.pushNotifications) {
-            updateLastCheckDisplay(lastCheckResult, timeString, 'Notifications disabled', 'warning');
-            return;
-        }
-
-        if (Notification.permission !== 'granted') {
-            updateLastCheckDisplay(lastCheckResult, timeString, 'Permission not granted', 'error');
-            return;
-        }
-
-        if (state.cards.length === 0) {
-            updateLastCheckDisplay(lastCheckResult, timeString, 'No cards added', 'warning');
-            return;
-        }
-
-        // Reset for new day
         if (state.lastNotificationDate !== getTodayDateString()) {
             state.notificationsSentToday = 0;
             state.lastNotificationDate = getTodayDateString();
@@ -3229,292 +3680,95 @@
             saveUsedTimeSlots();
         }
 
-        if (state.notificationsSentToday >= state.settings.maxNotificationsPerDay) {
-            updateLastCheckDisplay(lastCheckResult, timeString, 'Max notifications reached', 'warning');
-            return;
+        if (state.notificationsSentToday >= state.settings.maxNotificationsPerDay) return;
+
+        const now = new Date();
+        const currentHour = now.getHours();
+        const currentMinute = now.getMinutes();
+        const currentTotalMinutes = currentHour * 60 + currentMinute;
+
+        const selectedTimes = getSelectedNotificationTimes();
+        let matched = false;
+        let slotKey = null;
+
+        for (let i = 0; i < selectedTimes.length; i++) {
+            const time = selectedTimes[i];
+            const timeTotalMinutes = time.hour * 60 + time.minute;
+            const difference = Math.abs(currentTotalMinutes - timeTotalMinutes);
+
+            if (difference <= 5) {
+                slotKey = time.id + '_' + time.hour + '_' + time.minute;
+
+                if (usedTimeSlots[slotKey]) {
+                    continue;
+                }
+
+                matched = true;
+                break;
+            }
         }
 
-        const timeCheck = checkIfTimeToNotify();
+        if (!matched) return;
 
-        if (!timeCheck.matched) {
-            const nextTime = getNextScheduledTime(getSelectedNotificationTimes());
-            updateLastCheckDisplay(lastCheckResult, timeString, 'Waiting for ' + nextTime, 'info');
-            return;
-        }
-
-        // Mark slot as used
-        usedTimeSlots[timeCheck.slotKey] = true;
+        usedTimeSlots[slotKey] = true;
         saveUsedTimeSlots();
 
         const cardsInfo = getCardsNeedingReminder();
 
-        if (cardsInfo.urgentCards.length === 0 && cardsInfo.reminderCards.length === 0) {
-            updateLastCheckDisplay(lastCheckResult, timeString, 'No cards need reminders', 'success');
-            return;
-        }
-
-        console.log('🚀 SENDING...');
-        let totalSent = 0;
+        if (cardsInfo.urgentCards.length === 0 && cardsInfo.reminderCards.length === 0) return;
 
         if (state.settings.urgentAlerts && cardsInfo.urgentCards.length > 0) {
             if (state.settings.consolidatedSummary) {
-                if (sendConsolidatedNotification(cardsInfo.urgentCards, true)) totalSent++;
+                sendConsolidatedNotification(cardsInfo.urgentCards, true);
             } else {
                 for (let i = 0; i < cardsInfo.urgentCards.length; i++) {
                     if (state.notificationsSentToday >= state.settings.maxNotificationsPerDay) break;
                     const item = cardsInfo.urgentCards[i];
                     const title = '🚨 URGENT: ' + (item.card.cardName || item.card.bankName);
                     const body = item.daysUntil === 0 ? 'Due TODAY!' : 'Due TOMORROW!';
-                    if (sendNotification(title, body, 'urgent-' + item.card.id, true)) totalSent++;
+                    sendNotification(title, body, 'urgent-' + item.card.id, true);
                 }
             }
         }
 
         if (cardsInfo.reminderCards.length > 0 && state.notificationsSentToday < state.settings.maxNotificationsPerDay) {
             if (state.settings.consolidatedSummary) {
-                if (sendConsolidatedNotification(cardsInfo.reminderCards, false)) totalSent++;
+                sendConsolidatedNotification(cardsInfo.reminderCards, false);
             } else {
                 for (let i = 0; i < cardsInfo.reminderCards.length; i++) {
                     if (state.notificationsSentToday >= state.settings.maxNotificationsPerDay) break;
                     const item = cardsInfo.reminderCards[i];
                     const title = '💳 ' + (item.card.cardName || item.card.bankName);
                     const body = 'Due in ' + item.daysUntil + ' days';
-                    if (sendNotification(title, body, 'due-' + item.card.id, false)) totalSent++;
+                    sendNotification(title, body, 'due-' + item.card.id, false);
                 }
             }
         }
-
-        updateLastCheckDisplay(lastCheckResult, timeString, '✅ Sent ' + totalSent + ' notification(s)', 'success');
-        showToast('Sent ' + totalSent + ' notification(s)', 'success');
-    }
-
-    function updateLastCheckDisplay(element, time, message, type) {
-        if (!element) return;
-
-        let color = 'var(--text-secondary)';
-        if (type === 'success') color = '#10b981';
-        if (type === 'warning') color = '#f59e0b';
-        if (type === 'error') color = '#ef4444';
-
-        element.innerHTML = '⏰ ' + time + ' - <span style="color: ' + color + ';">' + message + '</span>';
-    }
-
-    function getNextScheduledTime(selectedTimes) {
-        if (!selectedTimes || selectedTimes.length === 0) {
-            return 'No times selected';
-        }
-
-        const now = new Date();
-        const currentTotalMinutes = now.getHours() * 60 + now.getMinutes();
-
-        for (let i = 0; i < selectedTimes.length; i++) {
-            const time = selectedTimes[i];
-            const timeTotalMinutes = time.hour * 60 + time.minute;
-            const slotKey = time.id + '_' + time.hour + '_' + time.minute;
-
-            if (timeTotalMinutes > currentTotalMinutes && !usedTimeSlots[slotKey]) {
-                return time.label + ' (today)';
-            }
-        }
-
-        return selectedTimes[0].label + ' (tomorrow)';
-    }
-
-    function updateSchedulerStatusDisplay() {
-        const statusDot = document.getElementById('schedulerDot');
-        const statusText = document.getElementById('schedulerStatusText');
-        const currentTimeDisplay = document.getElementById('currentTimeDisplay');
-        const notifCountDisplay = document.getElementById('notifCountDisplay');
-        const maxNotifDisplay = document.getElementById('maxNotifDisplay');
-        const selectedTimesDisplay = document.getElementById('selectedTimesDisplay');
-        const nextCheckTime = document.getElementById('nextCheckTime');
-
-        if (!statusDot) return;
-
-        const now = new Date();
-
-        if (currentTimeDisplay) {
-            currentTimeDisplay.textContent = now.toLocaleTimeString();
-        }
-
-        if (notifCountDisplay) {
-            notifCountDisplay.textContent = state.notificationsSentToday;
-        }
-        if (maxNotifDisplay) {
-            maxNotifDisplay.textContent = state.settings.maxNotificationsPerDay;
-        }
-
-        if (selectedTimesDisplay) {
-            const times = getSelectedNotificationTimes();
-            selectedTimesDisplay.textContent = times.length === 0 ? 'None' : times.map(function(t) { return t.label; }).join(', ');
-        }
-
-        if (nextCheckTime) {
-            nextCheckTime.textContent = getNextScheduledTime(getSelectedNotificationTimes());
-        }
-
-        if (state.settings.pushNotifications && Notification.permission === 'granted') {
-            statusDot.style.background = '#10b981';
-            statusText.textContent = 'Scheduler: Active ✓';
-        } else if (Notification.permission === 'denied') {
-            statusDot.style.background = '#ef4444';
-            statusText.textContent = 'Scheduler: Blocked';
-        } else {
-            statusDot.style.background = '#f59e0b';
-            statusText.textContent = 'Scheduler: Inactive';
-        }
     }
 
     // ========================================
-    // TEST FUNCTIONS
-    // ========================================
-
-    function testNotificationSimple() {
-        console.log('🧪 TEST: Simple notification');
-
-        if (!('Notification' in window)) {
-            alert('Notifications not supported');
-            return;
-        }
-
-        if (Notification.permission === 'denied') {
-            alert('Notifications BLOCKED.\n\nClick lock icon in address bar to allow.');
-            return;
-        }
-
-        if (Notification.permission === 'default') {
-            Notification.requestPermission().then(function(permission) {
-                if (permission === 'granted') {
-                    doTestNotification();
-                } else {
-                    alert('Permission denied');
-                }
-            });
-        } else {
-            doTestNotification();
-        }
-    }
-
-    function doTestNotification() {
-        try {
-            const notification = new Notification('🧪 CardGuard Test', {
-                body: 'If you see this and hear a sound, notifications work!',
-                tag: 'test-' + Date.now()
-            });
-
-            notification.onclick = function() {
-                window.focus();
-                notification.close();
-            };
-
-            playNotificationSound(false);
-            showToast('Test notification sent!', 'success');
-
-        } catch (error) {
-            alert('Error: ' + error.message);
-        }
-    }
-
-    function testActualReminder() {
-        if (Notification.permission !== 'granted') {
-            alert('Enable notifications first using "Test Simple"');
-            return;
-        }
-
-        if (state.cards.length === 0) {
-            alert('Add a card first');
-            return;
-        }
-
-        const card = state.cards[0];
-        const daysUntil = getDaysUntil(card.dueDate);
-        const cardName = card.cardName || card.bankName;
-
-        if (sendNotification('💳 ' + cardName + ' Reminder', 'Due in ' + daysUntil + ' days', 'test-' + Date.now(), false)) {
-            showToast('Reminder sent for ' + cardName, 'success');
-        }
-    }
-
-    function forceCheckNotifications() {
-        let info = '=== DEBUG INFO ===\n\n';
-        info += 'Permission: ' + Notification.permission + '\n';
-        info += 'Enabled: ' + state.settings.pushNotifications + '\n';
-        info += 'Cards: ' + state.cards.length + '\n';
-        info += 'Sent today: ' + state.notificationsSentToday + '/' + state.settings.maxNotificationsPerDay + '\n\n';
-
-        const times = getSelectedNotificationTimes();
-        info += 'Times: ' + times.map(function(t) { return t.label; }).join(', ') + '\n';
-
-        const cardsInfo = getCardsNeedingReminder();
-        info += 'Urgent: ' + cardsInfo.urgentCards.length + '\n';
-        info += 'Reminders: ' + cardsInfo.reminderCards.length;
-
-        alert(info);
-
-        if (Notification.permission === 'granted') {
-            const allCards = cardsInfo.urgentCards.concat(cardsInfo.reminderCards);
-            if (allCards.length > 0) {
-                sendConsolidatedNotification(allCards, cardsInfo.urgentCards.length > 0);
-                showToast('Force sent notification!', 'success');
-            } else {
-                showToast('No cards need reminders', 'info');
-            }
-        }
-    }
-
-    // ========================================
-    // NOTIFICATION SCHEDULE UI
+    // SCHEDULE PREVIEW
     // ========================================
 
     function updateSchedulePreview() {
         const timesList = document.getElementById('scheduleTimesList');
-        const datesList = document.getElementById('scheduledDatesList');
         const previewText = document.getElementById('previewText');
 
         if (!timesList || !previewText) return;
 
         const selectedTimes = getSelectedNotificationTimes();
 
-        // Times list
         if (selectedTimes.length === 0) {
             timesList.innerHTML = '<span class="schedule-time-tag">No times selected</span>';
         } else {
             let html = '';
             for (let i = 0; i < selectedTimes.length; i++) {
                 const time = selectedTimes[i];
-                const cssClass = time.type === 'custom' ? 'custom' : 'active';
-                html += '<span class="schedule-time-tag ' + cssClass + '">' + time.icon + ' ' + time.label + '</span>';
+                html += '<span class="schedule-time-tag active">' + time.icon + ' ' + time.label + '</span>';
             }
             timesList.innerHTML = html;
         }
 
-        // Dates list
-        if (datesList) {
-            const scheduledDates = getScheduledNotificationDates();
-
-            if (scheduledDates.length === 0) {
-                datesList.innerHTML = '<div class="no-scheduled-dates"><div class="icon">✅</div><div>No upcoming notifications</div></div>';
-            } else {
-                let html = '';
-                for (let i = 0; i < scheduledDates.length; i++) {
-                    const item = scheduledDates[i];
-                    let urgencyClass = '';
-                    let icon = '🔔';
-
-                    if (item.daysUntil <= 0) { urgencyClass = 'urgent'; icon = '🚨'; }
-                    else if (item.daysUntil === 1) { urgencyClass = 'urgent'; icon = '⚠️'; }
-                    else if (item.daysUntil <= 3) { urgencyClass = 'warning'; icon = '⏰'; }
-
-                    html += '<div class="scheduled-date-item ' + urgencyClass + '">';
-                    html += '<div class="scheduled-date-info"><span class="scheduled-date-icon">' + icon + '</span>';
-                    html += '<span class="scheduled-date-text">' + item.dateFormatted + ' - ' + item.reason + '</span></div>';
-                    html += '<span class="scheduled-date-card">' + item.cardName + '</span></div>';
-                }
-                datesList.innerHTML = html;
-            }
-        }
-
-        // Preview text
         const cardsInfo = getCardsNeedingReminder();
         const allCards = cardsInfo.urgentCards.concat(cardsInfo.reminderCards);
 
@@ -3533,49 +3787,6 @@
         }
     }
 
-    function getScheduledNotificationDates() {
-        const dates = [];
-        const today = new Date();
-
-        for (let i = 0; i < state.cards.length; i++) {
-            const card = state.cards[i];
-            if (isCardPaidThisCycle(card)) continue;
-
-            const daysUntilDue = getDaysUntil(card.dueDate);
-            const cardName = card.cardName || card.bankName;
-
-            if (state.settings.urgentAlerts) {
-                if (daysUntilDue === 0) {
-                    dates.push({ dateFormatted: 'Today', daysUntil: 0, reason: '🚨 DUE TODAY!', cardName: cardName });
-                } else if (daysUntilDue === 1) {
-                    dates.push({ dateFormatted: 'Tomorrow', daysUntil: 1, reason: '⚠️ Due Tomorrow', cardName: cardName });
-                }
-            }
-
-            if (card.notifyBeforeDue !== false) {
-                const reminderDays = card.reminderDays || [state.settings.defaultReminderDays];
-                for (let j = 0; j < reminderDays.length; j++) {
-                    if (daysUntilDue === reminderDays[j] && daysUntilDue > 1) {
-                        dates.push({ dateFormatted: 'Today', daysUntil: daysUntilDue, reason: reminderDays[j] + ' days before', cardName: cardName });
-                    }
-                }
-            }
-        }
-
-        dates.sort(function(a, b) { return a.daysUntil - b.daysUntil; });
-        return dates.slice(0, 10);
-    }
-
-    function formatDateShort(date) {
-        const today = new Date();
-        const tomorrow = new Date(today);
-        tomorrow.setDate(tomorrow.getDate() + 1);
-
-        if (date.toDateString() === today.toDateString()) return 'Today';
-        if (date.toDateString() === tomorrow.toDateString()) return 'Tomorrow';
-        return date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
-    }
-
     // ========================================
     // UI RENDERING FUNCTIONS
     // ========================================
@@ -3587,14 +3798,21 @@
         for (let i = 0; i < POPULAR_BANKS.length; i++) {
             const bank = POPULAR_BANKS[i];
             const selected = state.selectedBank === bank.id ? 'selected' : '';
-            let logoContent = bank.logoUrl ? '<img src="' + bank.logoUrl + '" alt="' + bank.abbr + '" style="width:100%;height:100%;object-fit:contain;border-radius:8px;">' : bank.abbr;
+            let logoContent = bank.logoUrl ? '<img src="' + bank.logoUrl + '" alt="' + bank.abbr + '" onerror="this.style.display=\'none\';this.parentElement.textContent=\'' + bank.abbr + '\'">' : bank.abbr;
 
-            html += '<div class="bank-option ' + selected + '" data-bank="' + bank.id + '" onclick="selectBank(\'' + bank.id + '\')">';
+            html += '<div class="bank-option ' + selected + '" data-bank="' + bank.id + '" data-name="' + bank.name.toLowerCase() + '">';
             html += '<div class="bank-option-logo" style="background:' + bank.color + ';">' + logoContent + '</div>';
             html += '<span class="bank-option-name">' + bank.name + '</span></div>';
         }
 
         selector.innerHTML = html;
+
+        const options = selector.querySelectorAll('.bank-option');
+        for (let i = 0; i < options.length; i++) {
+            options[i].addEventListener('click', function() {
+                selectBank(this.dataset.bank);
+            });
+        }
     }
 
     function selectBank(bankId) {
@@ -3613,13 +3831,27 @@
         }
     }
 
+    function filterBanks(searchTerm) {
+        const options = document.querySelectorAll('.bank-option');
+        const term = searchTerm.toLowerCase().trim();
+
+        for (let i = 0; i < options.length; i++) {
+            const bankName = options[i].dataset.name;
+            if (term === '' || bankName.includes(term)) {
+                options[i].classList.remove('hidden');
+            } else {
+                options[i].classList.add('hidden');
+            }
+        }
+    }
+
     function getBankInfo(card) {
         if (card.bankId && card.bankId !== 'other') {
             for (let i = 0; i < POPULAR_BANKS.length; i++) {
                 if (POPULAR_BANKS[i].id === card.bankId) return POPULAR_BANKS[i];
             }
         }
-        return { name: card.bankName, color: '#6366f1', abbr: card.bankName ? card.bankName.substring(0, 3).toUpperCase() : 'UNK', logoUrl: null };
+        return { name: card.bankName, color: '#6366f1', abbr: card.bankName ? card.bankName.substring(0, 4).toUpperCase() : 'BANK', logoUrl: null };
     }
 
     function renderCards() {
@@ -3643,49 +3875,158 @@
             html += createCardHTML(sortedCards[i]);
         }
 
-        html += '<div class="card-wrapper"><div class="add-card-btn" onclick="openAddCardModal()"><div class="icon">➕</div><span>Add New Card</span></div></div>';
+        html += '<div class="add-card-btn" onclick="openAddCardModal()"><div class="icon">➕</div><span>Add New Card</span></div>';
         grid.innerHTML = html;
         updateStats();
     }
 
     function createCardHTML(card) {
-        const colorConfig = CARD_COLORS.find(function(c) { return c.id === card.color; }) || CARD_COLORS[0];
+        const themeClass = 'theme-' + (card.color || 'midnight');
         const bankInfo = getBankInfo(card);
         const daysUntilDue = getDaysUntil(card.dueDate);
         const isPaid = isCardPaidThisCycle(card);
         const dueStatus = getDueStatus(daysUntilDue, isPaid);
-        const pattern = CARD_PATTERNS[Math.floor(card.id.charCodeAt(0) % CARD_PATTERNS.length)];
         const networkLogo = getNetworkLogo(card.network);
-        const isUrgent = !isPaid && daysUntilDue <= 1;
-        const urgentClass = isUrgent ? 'urgent-pulse' : '';
 
-        let logoContent = bankInfo.logoUrl ? '<img src="' + bankInfo.logoUrl + '" alt="' + bankInfo.abbr + '" style="width:100%;height:100%;object-fit:contain;border-radius:8px;">' : bankInfo.abbr;
+        let logoContent = bankInfo.logoUrl
+            ? '<img src="' + bankInfo.logoUrl + '" alt="' + bankInfo.abbr + '" onerror="this.style.display=\'none\';this.parentElement.innerHTML=\'<span class=bank-logo-text>' + bankInfo.abbr + '</span>\'">'
+            : '<span class="bank-logo-text">' + bankInfo.abbr + '</span>';
 
-        let html = '<div class="card-wrapper">';
-        html += '<div class="credit-card ' + urgentClass + '" style="background:' + colorConfig.gradient + ';" onclick="openEditCardModal(\'' + card.id + '\')">';
-        html += '<div class="card-pattern ' + pattern + '"></div>';
-        html += '<div class="due-badge ' + dueStatus.class + '">' + dueStatus.text + '</div>';
-        html += '<div class="card-actions">';
-        html += '<button class="card-action-btn" onclick="event.stopPropagation();openEditCardModal(\'' + card.id + '\')" title="Edit">✏️</button>';
-        html += '<button class="card-action-btn" onclick="event.stopPropagation();deleteCard(\'' + card.id + '\')" title="Delete">🗑️</button>';
+        let html = '';
+
+        // Credit Card Container with theme class
+        html += '<div class="credit-card ' + themeClass + '" onclick="openCardActionsModal(\'' + card.id + '\')">';
+
+        // Card Header - Bank Info & Chip
+        html += '<div class="card-header">';
+
+        // Bank info section
+        html += '<div class="bank-info">';
+        html += '<div class="bank-logo">' + logoContent + '</div>';
+        html += '<div class="bank-details">';
+        html += '<span class="bank-name">' + bankInfo.name + '</span>';
+        if (card.cardName) {
+            html += '<span class="card-variant">' + card.cardName + '</span>';
+        }
         html += '</div>';
-        html += '<div class="card-header"><div class="card-bank-info">';
-        html += '<div class="bank-logo" style="background:' + bankInfo.color + ';">' + logoContent + '</div>';
-        html += '<span class="card-bank">' + bankInfo.name + '</span></div>';
-        html += '<div class="card-chip"></div></div>';
+        html += '</div>';
+
+        // Chip and contactless section
+        html += '<div class="chip-contactless">';
+        html += '<div class="emv-chip"><div class="chip-lines"></div></div>';
+        html += '<div class="contactless-icon">';
+        html += '<img src="NFCIcon.png" alt="Contactless" onerror="this.parentElement.innerHTML=\'<div class=contactless-waves><div class=wave></div><div class=wave></div><div class=wave></div></div>\'">';
+        html += '</div>';
+        html += '</div>';
+
+        html += '</div>'; // End card-header
+
+        // Card Middle - Card Number
+        html += '<div class="card-middle">';
         html += '<div class="card-number">•••• •••• •••• ' + card.last4Digits + '</div>';
-        html += '<div class="card-footer"><div class="card-info">';
-        html += '<div class="card-holder-name">' + (card.cardHolderName || 'CARD HOLDER') + '</div>';
-        if (card.cardName) html += '<div class="card-name">' + card.cardName + '</div>';
-        html += '<div class="card-dates">';
-        html += '<div class="card-date-item"><span>Bill Date</span>' + getOrdinal(card.billingDate) + '</div>';
-        html += '<div class="card-date-item"><span>Due Date</span>' + getOrdinal(card.dueDate) + '</div>';
-        html += '</div></div><div class="card-network">' + networkLogo + '</div></div></div>';
-        html += '<div class="payment-actions"><button class="mark-paid-btn ' + (isPaid ? 'paid' : '') + '" onclick="togglePaidStatus(\'' + card.id + '\')">';
-        html += isPaid ? '✓ Paid for this month' : '💰 Mark as Paid';
-        html += '</button></div></div>';
+        html += '</div>';
+
+        // Card Bottom - Cardholder & Network
+        html += '<div class="card-bottom">';
+
+        // Cardholder section
+        html += '<div class="cardholder-section">';
+        html += '<div class="cardholder-label">Card Holder</div>';
+        html += '<div class="cardholder-name">' + (card.cardHolderName || 'CARD HOLDER') + '</div>';
+        html += '</div>';
+
+        // Network logo
+        html += '<div class="card-network">' + networkLogo + '</div>';
+
+        html += '</div>'; // End card-bottom
+
+        // Payment Info Bar at Bottom
+        html += '<div class="payment-info">';
+        html += '<div class="date-info">';
+        html += '<div class="date-item">';
+        html += '<span class="date-label">Bill Date</span>';
+        html += '<span class="date-value">' + getOrdinal(card.billingDate) + '</span>';
+        html += '</div>';
+        html += '<div class="date-item">';
+        html += '<span class="date-label">Due Date</span>';
+        html += '<span class="date-value">' + getOrdinal(card.dueDate) + '</span>';
+        html += '</div>';
+        html += '</div>';
+        html += '<div class="status-badge ' + dueStatus.class + '">' + dueStatus.text + '</div>';
+        html += '</div>'; // End payment-info
+
+        html += '</div>'; // End credit-card
 
         return html;
+    }
+
+    function handleMarkPaidAction() {
+        if (!state.activeCardId) return;
+
+        const card = state.cards.find(function(c) { return c.id === state.activeCardId; });
+        if (!card) return;
+
+        const isPaid = isCardPaidThisCycle(card);
+        const cardName = card.cardName || card.bankName;
+
+        closeCardActionsModal();
+
+        if (isPaid) {
+            showConfirmModal(
+                'Mark as Unpaid?',
+                'Remove paid status for "' + cardName + '" this month?',
+                'warning',
+                'btn-danger',
+                function() {
+                    togglePaidStatus(card.id);
+                    hideConfirmModal();
+                }
+            );
+        } else {
+            showConfirmModal(
+                'Mark as Paid?',
+                'Confirm payment for "' + cardName + '" this month?',
+                'success',
+                'btn-success',
+                function() {
+                    togglePaidStatus(card.id);
+                    hideConfirmModal();
+                }
+            );
+        }
+    }
+
+    function handleEditAction() {
+        if (!state.activeCardId) return;
+        const cardId = state.activeCardId;
+        closeCardActionsModal();
+
+        setTimeout(function() {
+            openEditCardModal(cardId);
+        }, 100);
+    }
+
+    function handleDeleteAction() {
+        if (!state.activeCardId) return;
+
+        const card = state.cards.find(function(c) { return c.id === state.activeCardId; });
+        if (!card) return;
+
+        const cardName = card.cardName || card.bankName;
+        const cardId = state.activeCardId;
+
+        closeCardActionsModal();
+
+        showConfirmModal(
+            'Delete Card?',
+            'Are you sure you want to delete "' + cardName + '"? This action cannot be undone.',
+            'danger',
+            'btn-danger',
+            function() {
+                deleteCard(cardId);
+                hideConfirmModal();
+            }
+        );
     }
 
     function togglePaidStatus(cardId) {
@@ -3711,6 +4052,16 @@
         renderCards();
         renderTimeline();
         updateSchedulePreview();
+    }
+
+    function deleteCard(cardId) {
+        state.cards = state.cards.filter(function(c) { return c.id !== cardId; });
+        saveCards();
+        renderCards();
+        renderTimeline();
+        renderCalendar();
+        updateSchedulePreview();
+        showToast('Card deleted', 'success');
     }
 
     function updateStats() {
@@ -3823,9 +4174,25 @@
         let html = '';
         for (let i = 0; i < CARD_COLORS.length; i++) {
             const c = CARD_COLORS[i];
-            html += '<div class="color-option ' + (c.id === state.selectedColor ? 'selected' : '') + '" style="background:' + c.gradient + ';" data-color="' + c.id + '" onclick="selectColor(\'' + c.id + '\')"></div>';
+            const selectedClass = c.id === state.selectedColor ? 'selected' : '';
+            html += '<div class="color-option theme-' + c.id + ' ' + selectedClass + '" data-color="' + c.id + '" title="' + c.name + '"></div>';
         }
         picker.innerHTML = html;
+
+        const options = picker.querySelectorAll('.color-option');
+        for (let i = 0; i < options.length; i++) {
+            options[i].addEventListener('click', function() {
+                selectColor(this.dataset.color);
+            });
+        }
+    }
+
+    function selectColor(colorId) {
+        state.selectedColor = colorId;
+        const options = document.querySelectorAll('.color-option');
+        for (let i = 0; i < options.length; i++) {
+            options[i].classList.toggle('selected', options[i].dataset.color === colorId);
+        }
     }
 
     function updateNotificationBanner() {
@@ -3834,6 +4201,15 @@
             banner.classList.add('hidden');
         } else {
             banner.classList.remove('hidden');
+        }
+    }
+
+    function updateFabVisibility() {
+        const fab = document.getElementById('fabAddBtn');
+        if (state.currentView === 'dashboard') {
+            fab.classList.remove('hidden');
+        } else {
+            fab.classList.add('hidden');
         }
     }
 
@@ -3850,9 +4226,9 @@
         document.getElementById('modalTitle').textContent = 'Add New Card';
         document.getElementById('cardForm').reset();
         document.getElementById('cardId').value = '';
+        document.getElementById('bankSearch').value = '';
         document.getElementById('notifyOnBilling').checked = false;
         document.getElementById('notifyBeforeDue').checked = true;
-        document.getElementById('customNotifyDate').value = '';
         document.getElementById('otherBankInput').classList.remove('show');
 
         renderColorPicker();
@@ -3866,10 +4242,13 @@
         for (let i = 0; i < state.cards.length; i++) {
             if (state.cards[i].id === cardId) { card = state.cards[i]; break; }
         }
-        if (!card) return;
+        if (!card) {
+            showToast('Card not found', 'error');
+            return;
+        }
 
         state.editingCardId = cardId;
-        state.selectedColor = card.color;
+        state.selectedColor = card.color || CARD_COLORS[0].id;
         state.selectedBank = card.bankId || null;
         state.selectedReminder = (card.reminderDays && card.reminderDays[0]) || 3;
 
@@ -3877,17 +4256,17 @@
         document.getElementById('cardId').value = card.id;
         document.getElementById('cardHolderName').value = card.cardHolderName || '';
         document.getElementById('cardName').value = card.cardName || '';
-        document.getElementById('cardNetwork').value = card.network;
-        document.getElementById('last4Digits').value = card.last4Digits;
+        document.getElementById('cardNetwork').value = card.network || 'visa';
+        document.getElementById('last4Digits').value = card.last4Digits || '';
         document.getElementById('creditLimit').value = card.creditLimit || '';
-        document.getElementById('billingDate').value = card.billingDate;
-        document.getElementById('dueDate').value = card.dueDate;
+        document.getElementById('billingDate').value = card.billingDate || 1;
+        document.getElementById('dueDate').value = card.dueDate || 1;
+        document.getElementById('bankSearch').value = '';
         document.getElementById('notifyOnBilling').checked = card.notifyOnBilling || false;
         document.getElementById('notifyBeforeDue').checked = card.notifyBeforeDue !== false;
-        document.getElementById('customNotifyDate').value = card.customNotifyDate || '';
 
         if (card.bankId === 'other') {
-            document.getElementById('customBankName').value = card.bankName;
+            document.getElementById('customBankName').value = card.bankName || '';
             document.getElementById('otherBankInput').classList.add('show');
         } else {
             document.getElementById('customBankName').value = '';
@@ -3903,14 +4282,6 @@
     function closeCardModal() {
         document.getElementById('cardModal').classList.remove('active');
         state.editingCardId = null;
-    }
-
-    function selectColor(colorId) {
-        state.selectedColor = colorId;
-        const options = document.querySelectorAll('.color-option');
-        for (let i = 0; i < options.length; i++) {
-            options[i].classList.toggle('selected', options[i].dataset.color === colorId);
-        }
     }
 
     function selectReminder(days) {
@@ -3964,7 +4335,6 @@
             notifyOnBilling: document.getElementById('notifyOnBilling').checked,
             notifyBeforeDue: document.getElementById('notifyBeforeDue').checked,
             reminderDays: [state.selectedReminder],
-            customNotifyDate: parseInt(document.getElementById('customNotifyDate').value) || null,
             paidCycles: existingCard ? (existingCard.paidCycles || []) : [],
             createdAt: existingCard ? existingCard.createdAt : new Date().toISOString(),
             updatedAt: new Date().toISOString()
@@ -3974,10 +4344,10 @@
             for (let i = 0; i < state.cards.length; i++) {
                 if (state.cards[i].id === state.editingCardId) { state.cards[i] = cardData; break; }
             }
-            showToast('Card updated!', 'success');
+            showToast('Card updated successfully!', 'success');
         } else {
             state.cards.push(cardData);
-            showToast('Card added!', 'success');
+            showToast('Card added successfully!', 'success');
         }
 
         saveCards();
@@ -3986,17 +4356,6 @@
         renderTimeline();
         renderCalendar();
         updateSchedulePreview();
-    }
-
-    function deleteCard(cardId) {
-        if (!confirm('Delete this card?')) return;
-        state.cards = state.cards.filter(function(c) { return c.id !== cardId; });
-        saveCards();
-        renderCards();
-        renderTimeline();
-        renderCalendar();
-        updateSchedulePreview();
-        showToast('Card deleted', 'success');
     }
 
     // ========================================
@@ -4012,7 +4371,7 @@
         a.download = 'cardguard-backup-' + new Date().toISOString().split('T')[0] + '.json';
         a.click();
         URL.revokeObjectURL(url);
-        showToast('Data exported!', 'success');
+        showToast('Data exported successfully!', 'success');
     }
 
     function importData() {
@@ -4028,29 +4387,28 @@
             try {
                 const data = JSON.parse(e.target.result);
                 if (data.cards && Array.isArray(data.cards)) {
-                    if (confirm('Replace all existing cards?')) {
-                        state.cards = data.cards;
-                    } else {
-                        for (let i = 0; i < data.cards.length; i++) {
-                            let exists = false;
-                            for (let j = 0; j < state.cards.length; j++) {
-                                if (state.cards[j].id === data.cards[i].id) { exists = true; break; }
+                    showConfirmModal(
+                        'Import Cards?',
+                        'Replace all existing cards with ' + data.cards.length + ' imported cards?',
+                        'warning',
+                        'btn-primary',
+                        function() {
+                            state.cards = data.cards;
+                            if (data.settings) {
+                                state.settings = { ...state.settings, ...data.settings, notificationTimes: { ...state.settings.notificationTimes, ...(data.settings.notificationTimes || {}) } };
+                                saveSettings();
                             }
-                            if (!exists) state.cards.push(data.cards[i]);
+                            saveCards();
+                            renderCards();
+                            renderTimeline();
+                            renderCalendar();
+                            applyTheme();
+                            updateSettingsUI();
+                            updateSchedulePreview();
+                            hideConfirmModal();
+                            showToast('Imported ' + data.cards.length + ' cards!', 'success');
                         }
-                    }
-                    if (data.settings) {
-                        state.settings = { ...state.settings, ...data.settings, notificationTimes: { ...state.settings.notificationTimes, ...(data.settings.notificationTimes || {}) } };
-                        saveSettings();
-                    }
-                    saveCards();
-                    renderCards();
-                    renderTimeline();
-                    renderCalendar();
-                    applyTheme();
-                    updateSettingsUI();
-                    updateSchedulePreview();
-                    showToast('Imported ' + data.cards.length + ' cards!', 'success');
+                    );
                 } else {
                     throw new Error('Invalid format');
                 }
@@ -4063,29 +4421,47 @@
     }
 
     function clearAllData() {
-        if (!confirm('Delete ALL cards and settings?')) return;
-        if (!confirm('Last chance - delete everything?')) return;
+        showConfirmModal(
+            '⚠️ Delete All Data?',
+            'This will permanently delete ALL cards and settings. Export a backup first!',
+            'danger',
+            'btn-danger',
+            function() {
+                hideConfirmModal();
 
-        state.cards = [];
-        state.settings = { pushNotifications: false, soundAlerts: true, defaultReminderDays: 3, darkMode: false, notificationTimes: { morning: true, afternoon: false, evening: false }, customTimeEnabled: false, customTime: '10:00', maxNotificationsPerDay: 2, urgentAlerts: true, consolidatedSummary: true };
+                setTimeout(function() {
+                    showConfirmModal(
+                        '🚨 Final Confirmation',
+                        'Last chance! This action cannot be undone. Continue?',
+                        'danger',
+                        'btn-danger',
+                        function() {
+                            state.cards = [];
+                            state.settings = { pushNotifications: false, soundAlerts: true, defaultReminderDays: 3, darkMode: false, notificationTimes: { morning: true, afternoon: false, evening: false }, customTimeEnabled: false, customTime: '10:00', maxNotificationsPerDay: 2, urgentAlerts: true, consolidatedSummary: true };
 
-        localStorage.removeItem(APP_CONFIG.storageKey);
-        localStorage.removeItem(APP_CONFIG.settingsKey);
-        localStorage.removeItem('cardguard_lastnotifdate');
-        localStorage.removeItem('cardguard_notifcount');
-        localStorage.removeItem('cardguard_slotsdate');
-        localStorage.removeItem('cardguard_usedslots');
+                            localStorage.removeItem(APP_CONFIG.storageKey);
+                            localStorage.removeItem(APP_CONFIG.settingsKey);
+                            localStorage.removeItem('cardguard_lastnotifdate');
+                            localStorage.removeItem('cardguard_notifcount');
+                            localStorage.removeItem('cardguard_slotsdate');
+                            localStorage.removeItem('cardguard_usedslots');
 
-        usedTimeSlots = {};
-        saveCards();
-        saveSettings();
-        applyTheme();
-        renderCards();
-        renderTimeline();
-        renderCalendar();
-        updateSettingsUI();
-        updateSchedulePreview();
-        showToast('All data cleared', 'success');
+                            usedTimeSlots = {};
+                            saveCards();
+                            saveSettings();
+                            applyTheme();
+                            renderCards();
+                            renderTimeline();
+                            renderCalendar();
+                            updateSettingsUI();
+                            updateSchedulePreview();
+                            hideConfirmModal();
+                            showToast('All data cleared', 'success');
+                        }
+                    );
+                }, 300);
+            }
+        );
     }
 
     // ========================================
@@ -4122,9 +4498,11 @@
         const views = document.querySelectorAll('.view');
         for (let i = 0; i < views.length; i++) views[i].classList.toggle('active', views[i].id === viewName + 'View');
 
+        updateFabVisibility();
+
         if (viewName === 'timeline') renderTimeline();
         else if (viewName === 'calendar') renderCalendar();
-        else if (viewName === 'settings') { updateSchedulePreview(); updateSchedulerStatusDisplay(); }
+        else if (viewName === 'settings') updateSchedulePreview();
     }
 
     // ========================================
@@ -4160,7 +4538,10 @@
         const t6 = document.getElementById('notifyTime6PM'); if (t6) t6.checked = state.settings.notificationTimes.evening;
 
         document.getElementById('enableCustomTime').checked = state.settings.customTimeEnabled;
-        setCustomTimeToInput(state.settings.customTime);
+        const customInput = document.getElementById('customNotificationTime');
+        if (customInput && state.settings.customTime) {
+            customInput.value = state.settings.customTime;
+        }
 
         const wrapper = document.getElementById('customTimeWrapper');
         if (state.settings.customTimeEnabled) wrapper.classList.add('show');
@@ -4196,20 +4577,6 @@
     }
 
     // ========================================
-    // SERVICE WORKER REGISTRATION
-    // ========================================
-
-    function registerServiceWorker() {
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/sw.js').then(function(reg) {
-                console.log('SW registered:', reg.scope);
-            }).catch(function(err) {
-                console.log('SW failed:', err);
-            });
-        }
-    }
-
-    // ========================================
     // EVENT LISTENERS
     // ========================================
 
@@ -4223,16 +4590,39 @@
         // Theme
         document.getElementById('themeToggle').addEventListener('click', toggleTheme);
 
+        // Add card buttons
+        document.getElementById('headerAddBtn').addEventListener('click', openAddCardModal);
+        document.getElementById('fabAddBtn').addEventListener('click', openAddCardModal);
+
         // Notification banner
         document.getElementById('enableNotificationsBtn').addEventListener('click', requestNotificationPermission);
 
         // Card form
         document.getElementById('cardForm').addEventListener('submit', saveCard);
 
-        // Modal
+        // Bank search
+        document.getElementById('bankSearch').addEventListener('input', function(e) {
+            filterBanks(e.target.value);
+        });
+
+        // Card Modal
         document.getElementById('closeModal').addEventListener('click', closeCardModal);
         document.getElementById('cancelBtn').addEventListener('click', closeCardModal);
         document.getElementById('cardModal').addEventListener('click', function(e) { if (e.target.id === 'cardModal') closeCardModal(); });
+
+        // Card Actions Modal
+        document.getElementById('closeCardActionsModal').addEventListener('click', closeCardActionsModal);
+        document.getElementById('cardActionsModal').addEventListener('click', function(e) { if (e.target.id === 'cardActionsModal') closeCardActionsModal(); });
+        document.getElementById('actionMarkPaid').addEventListener('click', handleMarkPaidAction);
+        document.getElementById('actionEdit').addEventListener('click', handleEditAction);
+        document.getElementById('actionDelete').addEventListener('click', handleDeleteAction);
+
+        // Confirm modal
+        document.getElementById('confirmCancelBtn').addEventListener('click', hideConfirmModal);
+        document.getElementById('confirmOkBtn').addEventListener('click', function() {
+            if (confirmCallback) confirmCallback();
+        });
+        document.getElementById('confirmModal').addEventListener('click', function(e) { if (e.target.id === 'confirmModal') hideConfirmModal(); });
 
         // Reminder chips
         const chips = document.querySelectorAll('.reminder-chip');
@@ -4251,14 +4641,11 @@
                 requestNotificationPermission().then(function(granted) {
                     e.target.checked = granted;
                     if (granted) startNotificationScheduler();
-                    updateSchedulerStatusDisplay();
                 });
             } else {
                 state.settings.pushNotifications = false;
                 saveSettings();
-                stopNotificationScheduler();
                 showToast('Notifications disabled', 'info');
-                updateSchedulerStatusDisplay();
             }
         });
 
@@ -4299,9 +4686,9 @@
         });
 
         // Custom time input
-        const customInput = document.getElementById('customNotificationTime');
-        if (customInput) {
-            customInput.addEventListener('change', function(e) {
+        const customTimeInput = document.getElementById('customNotificationTime');
+        if (customTimeInput) {
+            customTimeInput.addEventListener('change', function(e) {
                 state.settings.customTime = e.target.value;
                 saveSettings();
                 updateSchedulePreview();
@@ -4318,7 +4705,7 @@
                 const allBtns = document.querySelectorAll('.freq-btn');
                 for (let j = 0; j < allBtns.length; j++) allBtns[j].classList.toggle('active', parseInt(allBtns[j].dataset.freq) === freq);
                 saveSettings();
-                showToast('Max ' + freq + '/day', 'info');
+                showToast('Max ' + freq + ' notification(s)/day', 'info');
             });
         }
 
@@ -4336,9 +4723,8 @@
         });
 
         // Data buttons
-        document.getElementById('exportBtn').addEventListener('click', exportData);
-        document.getElementById('importBtn').addEventListener('click', importData);
         document.getElementById('exportDataBtn').addEventListener('click', exportData);
+        document.getElementById('exportBeforeDeleteBtn').addEventListener('click', exportData);
         document.getElementById('importDataBtn').addEventListener('click', importData);
         document.getElementById('clearDataBtn').addEventListener('click', clearAllData);
 
@@ -4349,10 +4735,17 @@
         document.getElementById('installPwaBtn').addEventListener('click', installPWA);
         window.addEventListener('beforeinstallprompt', handleInstallPrompt);
 
-        // Keyboard
+        // Keyboard shortcuts
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeCardModal();
-            if ((e.ctrlKey || e.metaKey) && e.key === 'n') { e.preventDefault(); openAddCardModal(); }
+            if (e.key === 'Escape') {
+                closeCardModal();
+                closeCardActionsModal();
+                hideConfirmModal();
+            }
+            if ((e.ctrlKey || e.metaKey) && e.key === 'n') {
+                e.preventDefault();
+                openAddCardModal();
+            }
         });
 
         // Visibility change
@@ -4401,22 +4794,18 @@
         updateSettingsUI();
         updateNotificationBanner();
         updateSchedulePreview();
+        updateFabVisibility();
         initEventListeners();
-        registerServiceWorker();
 
         if (state.settings.pushNotifications && Notification.permission === 'granted') {
             startNotificationScheduler();
-            console.log('✅ Scheduler started');
-        } else {
-            if (statusUpdateIntervalId) clearInterval(statusUpdateIntervalId);
-            statusUpdateIntervalId = setInterval(function() { updateSchedulerStatusDisplay(); }, 1000);
         }
 
-        console.log('✅ CardGuard ready', { cards: state.cards.length, permission: Notification.permission });
+        console.log('✅ CardGuard ready!', { cards: state.cards.length, permission: Notification.permission });
     }
 
     // ========================================
-    // START
+    // START APPLICATION
     // ========================================
 
     if (document.readyState === 'loading') {
